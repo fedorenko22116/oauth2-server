@@ -7,5 +7,6 @@ use DateTime;
 
 interface DateComparatorInterface
 {
-    public function compare(ComparatorStrategyInterface $comparator, DateTime $a, DateTime $b): bool;
+    public function setComparator(ComparatorStrategyInterface $strategy): self;
+    public function compare(DateTime $a, DateTime $b): bool;
 }

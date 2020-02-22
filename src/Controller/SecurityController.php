@@ -3,29 +3,48 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+use App\Request\Dto\AuthRequest;
 use App\Request\Form\Type\Dto\RegisterUser;
 use App\Request\Form\Type\RegisterType;
+use App\Service\Manager\AuthTokenManagerInterface;
 use App\Service\Manager\UserManagerInterface;
+use App\Util\Request\Host\HostComparatorInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class SecurityController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Route("/login", name="app_login")
+     * @Rest\Route("/oauth2/auth", name="app_login")
+     * @ParamConverter("authRequest", converter="app_request")
+     * @ParamConverter("client", converter="app_doctrine", options={"params" = {"id" = "client_id"}})
      */
-    public function login(Client $client, AuthenticationUtils $authenticationUtils): Response
-    {
+    public function login(
+        AuthRequest $authRequest,
+        Client $client,
+        AuthenticationUtils $authenticationUtils,
+        HostComparatorInterface $hostComparator,
+        AuthTokenManagerInterface $authTokenManager
+    ): Response {
+        if (!$hostComparator->equals($authRequest->redirectUri, $client->getHost())) {
+            throw new BadRequestHttpException("Invalid redirect url provided");
+        }
+
         if ($this->getUser()) {
-            return $this->redirect('target_path');
+            $token = $authTokenManager->createToken($this->getUser(), $client)->getToken();
+
+            return new RedirectResponse("{$authRequest->redirectUri}?code={$token}");
         }
 
         return $this->render('security/login.html.twig', [
             'last_username' => $authenticationUtils->getLastUsername(),
-            'redirect_uri' => $client->getRedirectUrl(),
+            'redirect_uri' => $authRequest->redirectUri,
             'client_id' => $client->getId(),
             'error' => $authenticationUtils->getLastAuthenticationError(),
         ]);

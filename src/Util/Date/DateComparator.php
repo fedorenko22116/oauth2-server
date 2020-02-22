@@ -7,8 +7,22 @@ use DateTime;
 
 class DateComparator implements DateComparatorInterface
 {
-    public function compare(ComparatorStrategyInterface $comparator, DateTime $a, DateTime $b): bool
+    private ComparatorStrategyInterface $comparator;
+
+    public function __construct(ComparatorStrategyInterface $comparator)
     {
-        return $comparator->compare($a, $b);
+        $this->comparator = $comparator;
+    }
+
+    public function setComparator(ComparatorStrategyInterface $strategy): self
+    {
+        $this->comparator = $strategy;
+
+        return $this;
+    }
+
+    public function compare(DateTime $a, DateTime $b): bool
+    {
+        return $this->comparator->compare($a, $b);
     }
 }

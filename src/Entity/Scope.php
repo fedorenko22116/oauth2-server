@@ -23,4 +23,7 @@ class Scope
 
     /** @ORM\Column(type="string") */
     protected string $description;
+
+    /** @ORM\Column(type="boolean") */
+    protected bool $default;
 }

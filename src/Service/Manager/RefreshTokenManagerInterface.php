@@ -3,9 +3,14 @@
 namespace App\Service\Manager;
 
 use App\Entity\RefreshToken;
+use App\Entity\Scope;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 interface RefreshTokenManagerInterface
 {
-    public function createToken(UserInterface $user): RefreshToken;
+    /**
+     * @param ArrayCollection<Scope>|null $scopes
+     */
+    public function createToken(UserInterface $user, ?ArrayCollection $scopes = null): RefreshToken;
 }

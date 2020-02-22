@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -46,10 +47,16 @@ class User implements UserInterface, EquatableInterface
     protected array $roles;
 
     /**
-     * @ORM\OneToMany(targetEntity="RefreshToken", mappedBy="user")
-     * @var RefreshToken[]
+     * @ORM\OneToMany(targetEntity="App\Entity\RefreshToken", mappedBy="user")
+     * @var ArrayCollection<RefreshToken>
      */
-    protected array $refreshTokens;
+    protected ArrayCollection $refreshTokens;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\AuthToken", mappedBy="user")
+     * @var ArrayCollection<AuthToken>
+     */
+    protected ArrayCollection $authTokens;
 
     private ?string $salt;
     private string $plainPassword = '';

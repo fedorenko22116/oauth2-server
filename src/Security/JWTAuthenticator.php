@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Security\Guard;
+namespace App\Security;
 
 use App\Repository\UserRepository;
 use App\Service\Token\TokenFacadeInterface;

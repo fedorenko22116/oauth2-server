@@ -5,7 +5,6 @@ namespace App\Controller\API\V1;
 use App\Entity\RefreshToken;
 use App\Service\Manager\RefreshTokenManagerInterface;
 use App\Util\Date\DateTimeInterface;
-use App\Util\Date\GteComparatorStrategy;
 use App\Util\DateComparatorInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -29,7 +28,7 @@ class AuthController extends AbstractFOSRestController
         DateTimeInterface $time,
         RefreshTokenManagerInterface $refreshTokenManager
     ): string {
-        if ($comparator->compare(new GteComparatorStrategy(), $refreshToken->getExpires(), $time->getDate())) {
+        if ($comparator->compare($refreshToken->getExpires(), $time->getDate())) {
             return $refreshTokenManager->createToken($this->getUser())->getToken();
         }
 

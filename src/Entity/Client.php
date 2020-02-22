@@ -18,6 +18,11 @@ class Client
 
     /**
      * @ORM\Column(type="string")
+     */
+    protected string $secret;
+
+    /**
+     * @ORM\Column(type="string")
      * @Assert\Url()
      */
     protected string $host;
@@ -34,17 +39,31 @@ class Client
      *      joinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="scope_id", referencedColumnName="id")}
      * )
+     * @var ArrayCollection<Scope>
      */
     protected ArrayCollection $scopes;
 
     /**
-     * @Assert\Url()
+     * @ORM\OneToMany(targetEntity="App\Entity\AuthToken", mappedBy="client", orphanRemoval=true)
+     * @var ArrayCollection<AuthToken>
      */
-    private string $redirectUri;
+    protected ArrayCollection $authTokens;
 
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getSecret(): string
+    {
+        return $this->secret;
+    }
+
+    public function setSecret(string $secret): self
+    {
+        $this->secret = $secret;
+
+        return $this;
     }
 
     public function getHost(): string
@@ -55,11 +74,6 @@ class Client
     public function getGrantTypes(): array
     {
         return $this->grantTypes;
-    }
-
-    public function getRedirectUrl(): string
-    {
-        return $this->redirectUri;
     }
 
     /**
