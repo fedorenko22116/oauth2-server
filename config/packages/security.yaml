@@ -1,0 +1,37 @@
+security:
+    providers:
+        database_provider:
+            entity:
+                class: App\Entity\User
+
+    encoders:
+        App\Entity\User: bcrypt
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        api_public:
+            pattern: ^/api/refresh-token
+            security: false
+        api:
+            pattern: ^/api
+            stateless: true
+            provider: database_provider
+            guard:
+                authenticators:
+                    - App\Security\JWTAuthenticator
+        main:
+            anonymous: lazy
+            provider: database_provider
+            guard:
+                authenticators:
+                    - App\Security\FormAuthenticator
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+
+    access_control:
+         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/api/refresh-token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
