@@ -8,5 +8,5 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 interface AuthTokenManagerInterface
 {
-    public function createToken(UserInterface $user, Client $client): AuthToken;
+    public function createToken(UserInterface $user, Client $client, string $redirectUri): AuthToken;
 }

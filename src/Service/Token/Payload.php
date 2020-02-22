@@ -4,9 +4,8 @@ namespace App\Service\Token;
 
 class Payload
 {
-    public int $id;
     public string $username;
-    public int $ttl;
+    public int $expires;
 
     /** @var array<string> */
     public array $scopes;

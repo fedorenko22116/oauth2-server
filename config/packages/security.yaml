@@ -36,5 +36,6 @@ security:
     access_control:
          - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/api/refresh-token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/oauth2/auth, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -19,9 +19,9 @@ class AuthTokenManager implements AuthTokenManagerInterface
         $this->entityManager = $entityManager;
     }
 
-    public function createToken(UserInterface $user, Client $client): AuthToken
+    public function createToken(UserInterface $user, Client $client, string $redirectUri): AuthToken
     {
-        $token = new AuthToken($this->hashGenerator->generate(), $client, $user);
+        $token = new AuthToken($this->hashGenerator->generate(), $client, $user, $redirectUri);
 
         $this->entityManager->persist($token);
         $this->entityManager->flush();

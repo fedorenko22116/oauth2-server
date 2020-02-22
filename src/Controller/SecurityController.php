@@ -25,7 +25,7 @@ class SecurityController extends AbstractFOSRestController
      * @ParamConverter("authRequest", converter="app_request")
      * @ParamConverter("client", converter="app_doctrine", options={"params" = {"id" = "client_id"}})
      */
-    public function login(
+    public function authenticate(
         AuthRequest $authRequest,
         Client $client,
         AuthenticationUtils $authenticationUtils,
@@ -37,9 +37,12 @@ class SecurityController extends AbstractFOSRestController
         }
 
         if ($this->getUser()) {
-            $token = $authTokenManager->createToken($this->getUser(), $client)->getToken();
+            $token = $authTokenManager->createToken($this->getUser(), $client, $authRequest->redirectUri)->getToken();
 
-            return new RedirectResponse("{$authRequest->redirectUri}?code={$token}");
+            return new RedirectResponse(
+                "{$authRequest->redirectUri}?code={$token}" .
+                ($authRequest->state ? "&state={$authRequest->state}" : '')
+            );
         }
 
         return $this->render('security/login.html.twig', [

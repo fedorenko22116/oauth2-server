@@ -12,4 +12,9 @@ class AuthTokenRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AuthToken::class);
     }
+
+    public function findOneByToken(string $token): ?AuthToken
+    {
+        return $this->findOneBy(['token' => $token]);
+    }
 }

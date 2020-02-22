@@ -34,12 +34,12 @@ class JWTAuthenticator extends AbstractGuardAuthenticator
     public function supports(Request $request): bool
     {
         return $request->headers->has('Authorization') &&
-            preg_match('/^Bearer\s(.*)/', $request->headers->get('Authorization'));
+            preg_match('/.*Bearer\s(.*)$/', $request->headers->get('Authorization'));
     }
 
     public function getCredentials(Request $request): string
     {
-        return preg_replace('/Bearer\s/', '', $request->headers->get('Authorization'));
+        return preg_replace('/.*Bearer\s/', '', $request->headers->get('Authorization'));
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface

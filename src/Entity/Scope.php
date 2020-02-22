@@ -26,4 +26,9 @@ class Scope
 
     /** @ORM\Column(type="boolean") */
     protected bool $default;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
