@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Controller\API\V1;
+namespace App\Controller\API;
 
 use App\Entity\AuthToken;
 use App\Entity\RefreshToken;
