@@ -11,9 +11,21 @@ class DoctrineRequestConverter extends DoctrineParamConverter implements ParamCo
 {
     public function apply(Request $request, ParamConverter $configuration): void
     {
-        foreach ($configuration->getOptions()['params'] as $param) {
+        foreach (
+            array_merge((array)$request->query->getIterator(), (array)$request->request->getIterator()) as $param
+        ) {
             $request->attributes->set($param, $request->get($param));
         }
+
+        $options = $configuration->getOptions();
+
+        foreach ($options['params'] ?? [] as $name => $param) {
+            $request->attributes->set($name, $request->get($param));
+        }
+
+        unset($options['params']);
+
+        $configuration->setOptions($options);
 
         parent::apply($request, $configuration);
     }

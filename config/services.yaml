@@ -30,3 +30,14 @@ services:
         arguments: ['%env(RSA_KEY_PATH)%']
 
     App\Util\Date\ComparatorStrategyInterface: '@App\Util\Date\GteComparatorStrategy'
+    Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter: '@serializer.name_converter.camel_case_to_snake_case'
+
+    app.param_converter.request_converter:
+        class: App\Request\Converter\RequestConverter
+        tags:
+            - { name: request.param_converter, converter: app_request }
+
+    app.param_converter.doctrine_converter:
+        class: App\Request\Converter\DoctrineRequestConverter
+        tags:
+            - { name: request.param_converter, converter: app_doctrine }

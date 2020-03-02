@@ -30,7 +30,7 @@ class RequestConverter implements ParamConverterInterface
         $object = new $class();
 
         foreach ($props as $prop) {
-            if (($var = $request->get($this->camelCaseConverter->normalize($prop)) !== null)) {
+            if (($var = $request->get($this->camelCaseConverter->normalize($prop))) !== null) {
                 if ($meta->hasMethod($method = 'set' . ucfirst($prop))) {
                     $object->$method($var);
                 } else if ($meta->hasProperty($prop) && $meta->getProperty($prop)->isPublic()) {

@@ -24,11 +24,10 @@ class AuthController extends AbstractFOSRestController
 {
     /**
      * @Rest\Post("/refresh-token")
-     * @Rest\RequestParam("token", requirements="[\w]+")
      * @ParamConverter(
      *     "refreshToken",
      *      converter="app_doctrine",
-     *      options={"params"={"token": "token"}, expr="repository.findOneByToken(token)"}
+     *      options={"expr"="repository.findOneByToken(token)"}
      * )
      */
     public function refresh(
@@ -45,12 +44,11 @@ class AuthController extends AbstractFOSRestController
     }
 
     /**
-     * @Rest\Post(/token)
-     * @ParamConverter("tokenRequest", converter="app_request")
+     * @Rest\Post("/token")
      * @ParamConverter(
      *     "token",
      *      converter="app_doctrine",
-     *      options={"params"={"token": "code"}, expr="repository.findOneByToken(token)"}
+     *      options={"expr"="repository.findOneByToken(token)"}
      * )
      */
     public function token(TokenRequest $tokenRequest, AuthToken $token, TokenFacadeInterface $tokenFacade): string
