@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Request\Dto;
+namespace App\Application\Request\DTO;
 
-use App\Entity\Client;
+use App\Domain\Entity\Client;
 use App\Domain\Entity\Scope;
 use App\Infrastructure\Service\Request\Host\HostComparatorInterface;
 use LSBProject\RequestBundle\Configuration\Entity;

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Request\Form\Type\Dto;
+namespace App\Domain\Service\Manager;
 
-class RegisterUser
+class RegisterUserDTO
 {
     public $username;
     public $password;

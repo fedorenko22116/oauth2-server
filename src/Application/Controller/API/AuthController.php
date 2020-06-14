@@ -2,8 +2,8 @@
 
 namespace App\Application\Controller\API;
 
-use App\Application\Request\Dto\RefreshTokenRequest;
-use App\Application\Request\Dto\TokenRequest;
+use App\Application\Request\DTO\RefreshTokenRequest;
+use App\Application\Request\DTO\TokenRequest;
 use App\Domain\Service\Manager\RefreshTokenManagerInterface;
 use App\Domain\Service\Token\Factory\PayloadFactoryInterface;
 use App\Domain\Service\Token\TokenFacadeInterface;

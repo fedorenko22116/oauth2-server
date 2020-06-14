@@ -1,9 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Service\Manager;
+namespace App\Domain\Service\Manager;
 
 use App\Domain\Entity\User;
-use App\Application\Request\Form\Type\Dto\RegisterUser;
 use App\Infrastructure\Service\Hash\PasswordUpdaterInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -18,7 +17,7 @@ class UserManager implements UserManagerInterface
         $this->passwordUpdater = $passwordUpdater;
     }
 
-    public function createUser(RegisterUser $registerUser): ?User
+    public function createUser(RegisterUserDTO $registerUser): ?User
     {
         $user = new User();
 

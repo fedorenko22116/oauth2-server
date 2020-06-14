@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Request\Dto;
+namespace App\Application\Request\DTO;
 
-use App\Entity\RefreshToken;
+use App\Domain\Entity\RefreshToken;
 use App\Infrastructure\Service\Date\DateTimeInterface;
 use App\Infrastructure\Service\DateComparatorInterface;
 use LSBProject\RequestBundle\Configuration\Entity;

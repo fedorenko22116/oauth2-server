@@ -2,10 +2,10 @@
 
 namespace App\Application\Controller;
 
-use App\Application\Request\Dto\AuthorizationRequest;
-use App\Application\Request\Form\Type\Dto\RegisterUser;
+use App\Application\Request\DTO\AuthorizationRequest;
 use App\Application\Request\Form\Type\RegisterType;
 use App\Domain\Service\Manager\AuthTokenManagerInterface;
+use App\Domain\Service\Manager\RegisterUserDTO;
 use App\Domain\Service\Manager\UserManagerInterface;
 use App\Infrastructure\Service\UrlGeneratorInterface;
 use Exception;
@@ -51,7 +51,7 @@ class SecurityController extends AbstractFOSRestController
      */
     public function register(Request $request, UserManagerInterface $userManager): Response
     {
-        $registerUser = new RegisterUser();
+        $registerUser = new RegisterUserDTO();
         $form = $this->createForm(RegisterType::class, $registerUser);
         $form->handleRequest($request);
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Security;
+namespace App\Application\Security;
 
 use App\Constants;
 use App\Domain\Entity\User;

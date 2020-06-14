@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Request\Dto;
+namespace App\Application\Request\DTO;
 
-use App\Entity\AuthToken;
+use App\Domain\Entity\AuthToken;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;

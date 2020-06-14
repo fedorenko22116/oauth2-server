@@ -20,14 +20,14 @@ security:
             provider: database_provider
             guard:
                 authenticators:
-                    - App\Infrastructure\Security\JWTAuthenticator
+                    - App\Application\Security\JWTAuthenticator
         main:
             pattern: ^/
             anonymous: lazy
             provider: database_provider
             guard:
                 authenticators:
-                    - App\Infrastructure\Security\FormAuthenticator
+                    - App\Application\Security\FormAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout
