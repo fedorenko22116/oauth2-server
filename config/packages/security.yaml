@@ -2,10 +2,10 @@ security:
     providers:
         database_provider:
             entity:
-                class: App\Entity\User
+                class: App\Domain\Entity\User
 
     encoders:
-        App\Entity\User: bcrypt
+        App\Domain\Entity\User: bcrypt
 
     firewalls:
         dev:
@@ -20,14 +20,14 @@ security:
             provider: database_provider
             guard:
                 authenticators:
-                    - App\Security\JWTAuthenticator
+                    - App\Infrastructure\Security\JWTAuthenticator
         main:
             pattern: ^/
             anonymous: lazy
             provider: database_provider
             guard:
                 authenticators:
-                    - App\Security\FormAuthenticator
+                    - App\Infrastructure\Security\FormAuthenticator
             logout:
                 path: app_logout
                 # where to redirect after logout

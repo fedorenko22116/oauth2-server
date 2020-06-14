@@ -15,29 +15,23 @@ services:
     # this creates a service per class whose id is the fully-qualified class name
     App\:
         resource: '../src/*'
-        exclude: '../src/{DependencyInjection,Entity,Migrations,Tests,Kernel.php}'
+        exclude: '../src/{DependencyInjection,Domain/Entity,Infrastructure/Migrations,Tests,Kernel.php}'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller'
+    App\Application\Controller\:
+        resource: '../src/Application/Controller'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Util\Cryptography\JWTCryptography:
+    App\Infrastructure\Service\Cryptography\JWTCryptography:
         arguments: ['%env(RSA_KEY_PATH)%']
 
-    App\Util\Date\ComparatorStrategyInterface: '@App\Util\Date\GteComparatorStrategy'
+    App\Infrastructure\Service\Date\ComparatorStrategyInterface: '@App\Infrastructure\Service\Date\GteComparatorStrategy'
     Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter: '@serializer.name_converter.camel_case_to_snake_case'
 
-    app.param_converter.request_converter:
-        class: App\Request\Converter\RequestConverter
-        tags:
-            - { name: request.param_converter, converter: app_request }
-
-    app.param_converter.doctrine_converter:
-        class: App\Request\Converter\DoctrineRequestConverter
-        tags:
-            - { name: request.param_converter, converter: app_doctrine }
+    App\Infrastructure\Service\Request\Host\HostComparatorInterface:
+        class: App\Infrastructure\Service\Request\Host\HostComparator
+        public: true

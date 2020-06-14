@@ -8,8 +8,12 @@
         {% endblock %}
     </head>
     <body>
-        <div>
-            {% block body %}{% endblock %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                {% block body %}{% endblock %}
+                </div>
+            </div>
         </div>
         {% block javascripts %}
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" type="text/javascript"></script>
