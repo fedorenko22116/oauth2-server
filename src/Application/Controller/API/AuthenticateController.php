@@ -3,7 +3,7 @@
 namespace App\Application\Controller\API;
 
 use App\Application\Request\DTO\RefreshTokenRequest;
-use App\Application\Request\DTO\TokenRequest;
+use App\Application\Request\DTO\AccessTokenRequest;
 use App\Domain\Service\Manager\RefreshTokenManagerInterface;
 use App\Domain\Service\Token\Factory\PayloadFactoryInterface;
 use App\Domain\Service\Token\TokenFacadeInterface;
@@ -13,10 +13,15 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 /**
  * @Rest\Route("/api")
  */
-class AuthController extends AbstractFOSRestController
+class AuthenticateController extends AbstractFOSRestController
 {
     /**
      * @Rest\Post("/refresh-token")
+     *
+     * @param RefreshTokenRequest          $request
+     * @param RefreshTokenManagerInterface $refreshTokenManager
+     *
+     * @return string
      */
     public function refresh(RefreshTokenRequest $request, RefreshTokenManagerInterface $refreshTokenManager): string
     {
@@ -25,9 +30,15 @@ class AuthController extends AbstractFOSRestController
 
     /**
      * @Rest\Post("/token")
+     *
+     * @param AccessTokenRequest      $request
+     * @param TokenFacadeInterface    $tokenFacade
+     * @param PayloadFactoryInterface $payloadFactory
+     *
+     * @return string
      */
     public function token(
-        TokenRequest $request,
+        AccessTokenRequest $request,
         TokenFacadeInterface $tokenFacade,
         PayloadFactoryInterface $payloadFactory
     ): string {

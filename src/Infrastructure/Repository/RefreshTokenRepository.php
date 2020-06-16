@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Entity\RefreshToken;
+use App\Domain\Entity\RefreshToken;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

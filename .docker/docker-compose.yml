@@ -4,6 +4,7 @@ services:
     build: ..
     volumes:
       - ..:/var/www/root
+      - ~/.ssh:/.ssh
   db:
     image: mysql
     command: --default-authentication-plugin=mysql_native_password

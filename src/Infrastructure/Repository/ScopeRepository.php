@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Entity\Scope;
+use App\Domain\Entity\Scope;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;

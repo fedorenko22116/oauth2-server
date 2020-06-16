@@ -16,10 +16,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-class SecurityController extends AbstractFOSRestController
+class LoginController extends AbstractFOSRestController
 {
     /**
      * @Rest\Route("/oauth2/auth", name="app_login")
+     *
+     * @param AuthorizationRequest      $request
+     * @param AuthenticationUtils       $authenticationUtils
+     * @param AuthTokenManagerInterface $authTokenManager
+     * @param UrlGeneratorInterface     $urlGenerator
+     *
+     * @return Response
      */
     public function authenticate(
         AuthorizationRequest $request,
@@ -48,6 +55,11 @@ class SecurityController extends AbstractFOSRestController
 
     /**
      * @Rest\Get("/register")
+     *
+     * @param Request              $request
+     * @param UserManagerInterface $userManager
+     *
+     * @return Response
      */
     public function register(Request $request, UserManagerInterface $userManager): Response
     {
@@ -67,9 +79,13 @@ class SecurityController extends AbstractFOSRestController
 
     /**
      * @Rest\Get("/logout", name="app_logout")
+     *
+     * @throws Exception
      */
     public function logout(): Response
     {
-        throw new Exception('This method can be blank - it will be intercepted by the logout key on your firewall');
+        throw new Exception(
+            'This method can be blank - it will be intercepted by the logout key on your firewall'
+        );
     }
 }

@@ -45,10 +45,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
 
     public function supports(Request $request)
     {
-        return 'app_login' === $request->attributes->get('_route')
-            && $request->isMethod('POST')
-            && $request->request->has(Constants::ARG_CLIENT_ID)
-            && $request->request->has(Constants::ARG_REDIRECT_URI);
+        return 'app_login' === $request->attributes->get('_route') && $request->isMethod('POST');
     }
 
     public function getCredentials(Request $request)

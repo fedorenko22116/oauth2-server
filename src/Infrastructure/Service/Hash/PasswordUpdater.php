@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Service\Hash;
 
-use App\Entity\User;
+use App\Domain\Entity\User;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\NativePasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\SelfSaltingEncoderInterface;

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Service\Hash;
 
-use App\Entity\User;
+use App\Domain\Entity\User;
 
 interface PasswordUpdaterInterface
 {
