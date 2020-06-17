@@ -2,9 +2,10 @@
 
 namespace App\Application\Http\Response;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Webmozart\Assert\Assert;
 
-class ErrorResponse
+class ErrorResponse extends JsonResponse
 {
     public const INVALID_REQUEST = 'invalid_request';
     public const UNAUTHORIZED_CLIENT = 'unauthorized_client';
@@ -14,7 +15,7 @@ class ErrorResponse
     public const SERVER_ERROR = 'server_error';
     public const TEMPORARILY_UNAVAILABLE = 'temporarily_unavailable';
 
-    private const CODES = [
+    private const MESSAGES = [
         self::INVALID_REQUEST => 'The request is missing a required parameter, includes an
                invalid parameter value, includes a parameter more than
                once, or is otherwise malformed.',
@@ -35,18 +36,26 @@ class ErrorResponse
                of the server.'
     ];
 
-    public string $error;
-    public string $errorDescription;
-    public string $errorUri;
-    public string $state;
+    private const CODES = [
+        self::INVALID_REQUEST => 400,
+        self::UNAUTHORIZED_CLIENT => 400,
+        self::ACCESS_DENIED => 400,
+        self::UNSUPPORTED_RESPONSE_TYPE => 400,
+        self::INVALID_SCOPE => 400,
+        self::SERVER_ERROR => 500,
+        self::TEMPORARILY_UNAVAILABLE => 500,
+    ];
 
     private function __construct(string $error, string $errorUri = '', string $state = '')
     {
-        Assert::inArray($error, array_keys(self::CODES), 'Invalid error code given');
+        Assert::inArray($error, array_keys(self::MESSAGES), 'Invalid error code given');
+        Assert::inArray($error, array_keys(self::CODES), 'Code is not implemented');
 
-        $this->error = $error;
-        $this->errorDescription = self::CODES[$this->error];
-        $this->errorUri = $errorUri;
-        $this->state = $state;
+        parent::__construct([
+            'error' => $error,
+            'error_description' => self::MESSAGES[$error],
+            'error_uri' => $errorUri,
+            'state' => $state,
+        ], self::CODES[$error]);
     }
 }

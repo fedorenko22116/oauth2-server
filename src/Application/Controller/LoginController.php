@@ -19,7 +19,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class LoginController extends AbstractFOSRestController
 {
     /**
-     * @Rest\Route("/oauth2/auth", name="app_login")
+     * @Rest\Route("/auth", name="app_login")
      *
      * @param AuthorizationRequest      $request
      * @param AuthenticationUtils       $authenticationUtils

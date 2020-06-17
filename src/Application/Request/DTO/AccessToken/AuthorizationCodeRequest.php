@@ -1,35 +1,29 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Request\DTO;
+namespace App\Application\Request\DTO\AccessToken;
 
 use App\Domain\Entity\AuthToken;
 use App\Domain\Entity\Client;
-use App\Domain\Entity\Scope;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Psr\Container\ContainerInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @RequestStorage({"body"})
  */
-class AccessTokenRequest extends AbstractRequest
+class AuthorizationCodeRequest extends AbstractRequest
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\Regex(pattern="/^(authorization_code|password|client_credentials)$/")
+     * @Assert\Regex(pattern="/^(authorization_code)$/")
      */
-    public string $grantType = '';
-
-    public string $username;
-    public string $password;
-    public string $scope = Scope::INFO;
+    public string $grantType;
 
     /**
      * @Assert\Url()
      */
-    public string $redirectUri = '';
+    public string $redirectUri;
 
     /**
      * @Entity(expr="repository.findOneByToken(token)", mapping={"token": "code"})
@@ -44,10 +38,5 @@ class AccessTokenRequest extends AbstractRequest
     public function validate(ContainerInterface $container): bool
     {
         return !($this->token->getRedirectUri() && $this->redirectUri !== $this->token->getRedirectUri());
-    }
-
-    public function getErrorMessage(): string
-    {
-        return "Redirect link isn't matched";
     }
 }
