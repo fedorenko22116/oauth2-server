@@ -15,16 +15,26 @@ class Scope
      * @ORM\Id()
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
      */
-    protected int $id;
+    protected $id = 0;
 
-    /** @ORM\Column(type="string") */
-    protected string $name;
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    protected $name;
 
-    /** @ORM\Column(type="string") */
-    protected string $description;
+    /**
+     * @ORM\Column(type="string")
+     * @var string
+     */
+    protected $description;
 
-    /** @ORM\Column(type="boolean") */
+    /**
+     * @ORM\Column(type="boolean")
+     * @var bool
+     */
     protected bool $default;
 
     public function getName(): string

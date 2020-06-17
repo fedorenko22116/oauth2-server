@@ -13,25 +13,28 @@ class Client
      * @ORM\Id()
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
      */
-    protected int $id = 0;
+    protected $id;
 
     /**
      * @ORM\Column(type="string")
+     * @var string
      */
-    protected string $secret = '';
+    protected $secret;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\Url()
+     * @var string
      */
-    protected string $host = '';
+    protected $host;
 
     /**
      * @ORM\Column(type="array")
      * @var string[]
      */
-    protected array $grantTypes = [];
+    protected $grantTypes = [];
 
     /**
      * @ORM\ManyToMany(targetEntity="Scope")
@@ -41,13 +44,13 @@ class Client
      * )
      * @var Collection<Scope>
      */
-    protected ?Collection $scopes = null;
+    protected $scopes;
 
     /**
      * @ORM\OneToMany(targetEntity="AuthToken", mappedBy="client", orphanRemoval=true)
      * @var Collection<AuthToken>
      */
-    protected ?Collection $authTokens = null;
+    protected $authTokens;
 
     public function getId(): int
     {

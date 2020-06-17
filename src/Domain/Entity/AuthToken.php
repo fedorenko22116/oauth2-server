@@ -14,26 +14,33 @@ class AuthToken
      * @ORM\Id()
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
      */
-    private int $id;
+    private $id;
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @var string
      */
-    private string $token;
+    private $token;
 
     /**
      * @ORM\Column(type="string", nullable=true)
+     * @var string
      */
     private string $redirectUri;
 
     /**
      * @ORM\ManyToOne(targetEntity="Client", inversedBy="authTokens")
+     * @var Client
      */
-    private Client $client;
+    private $client;
 
-    /** @ORM\ManyToOne(targetEntity="User", inversedBy="authTokens") */
-    protected UserInterface $user;
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="authTokens")
+     * @var UserInterface
+     */
+    protected $user;
 
     public function __construct(string $token, Client $client, UserInterface $user, string $redirectUri)
     {

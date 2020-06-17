@@ -19,47 +19,58 @@ class User implements UserInterface, EquatableInterface
      * @ORM\Id()
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int
      */
-    protected int $id = 0;
+    protected $id;
 
     /**
      * @ORM\Column(type="string", unique=true)
      * @Assert\Length(min="4")
+     * @var string
      */
-    protected string $username = '';
+    protected $username;
 
     /**
      * @ORM\Column(type="string")
      * @Assert\Length(min="6")
+     * @var string
      */
-    protected string $password = '';
+    protected $password;
 
     /**
      * @ORM\Column(type="string", unique=true)
      * @Assert\Email()
+     * @var string
      */
-    protected string $email = '';
+    protected $email;
 
     /**
      * @ORM\Column(type="array")
      * @var string[]
      */
-    protected array $roles = [self::ROLE_USER];
+    protected $roles = [self::ROLE_USER];
 
     /**
      * @ORM\OneToMany(targetEntity="RefreshToken", mappedBy="user")
-     * @var Collection<RefreshToken>|null
+     * @var Collection<RefreshToken>
      */
     protected $refreshTokens;
 
     /**
      * @ORM\OneToMany(targetEntity="AuthToken", mappedBy="user")
-     * @var Collection<AuthToken>|null
+     * @var Collection<AuthToken>
      */
     protected $authTokens;
 
-    private ?string $salt;
-    private string $plainPassword = '';
+    /**
+     * @var string|null
+     */
+    private $salt;
+
+    /**
+     * @var string
+     */
+    private $plainPassword = '';
 
     public function getId(): int
     {
