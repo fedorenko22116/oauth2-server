@@ -21,10 +21,7 @@ class ClientConverter implements ParamConverterInterface
     {
         $credentials = trim(preg_replace('/.*Basic\s/', '', $request->headers->get('Authorization')));
         [$clientId, $clientSecret] = explode(':', $credentials);
-        $client = $this->clientRepository->findBy([
-            'id' => $clientId,
-            'secret' => $clientSecret,
-        ]);
+        $client = $this->clientRepository->findByCredentials($clientId, $clientSecret);
 
         if ($client) {
             $request->attributes->set($configuration->getName(), $client);
