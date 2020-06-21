@@ -5,7 +5,7 @@ namespace App\Application\Http\Controller\API;
 use App\Application\Http\Request\DTO\AccessToken\AuthorizationCodeRequest;
 use App\Application\Http\Request\DTO\AccessToken\ClientCredentialsRequest;
 use App\Application\Http\Request\DTO\AccessToken\PasswordRequest;
-use App\Constants;
+use App\Application\Constants;
 use App\Domain\Service\Manager\RefreshTokenManagerInterface;
 use App\Domain\Service\Token\Factory\PayloadFactoryInterface;
 use App\Domain\Service\Token\TokenFacadeInterface;

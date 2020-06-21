@@ -27,10 +27,7 @@ class ErrorResponse extends JsonResponse
                authorization code using this method.',
         self::INVALID_SCOPE => 'The requested scope is invalid, unknown, or malformed.',
         self::SERVER_ERROR => 'The authorization server encountered an unexpected
-               condition that prevented it from fulfilling the request.
-               (This error code is needed because a 500 Internal Server
-               Error HTTP status code cannot be returned to the client
-               via an HTTP redirect.)',
+               condition that prevented it from fulfilling the request.',
         self::TEMPORARILY_UNAVAILABLE => 'The authorization server is currently unable to handle
                the request due to a temporary overloading or maintenance
                of the server.'
