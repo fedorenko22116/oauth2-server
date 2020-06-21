@@ -3,27 +3,30 @@
 namespace App\Domain\Service\Manager;
 
 use App\Domain\Contract\HashGeneratorInterface;
+use App\Domain\Contract\Repository\AuthTokenRepositoryInterface;
 use App\Domain\Entity\AuthToken;
 use App\Domain\Entity\Client;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthTokenManager implements AuthTokenManagerInterface
 {
     private HashGeneratorInterface $hashGenerator;
-    private EntityManagerInterface $entityManager;
+    private AuthTokenRepositoryInterface $authTokenRepository;
 
-    public function __construct(HashGeneratorInterface $hashGenerator, EntityManagerInterface $entityManager)
-    {
+    public function __construct(
+        HashGeneratorInterface $hashGenerator,
+        AuthTokenRepositoryInterface $authTokenRepository
+    ) {
         $this->hashGenerator = $hashGenerator;
-        $this->entityManager = $entityManager;
+        $this->authTokenRepository = $authTokenRepository;
     }
 
     public function createToken(UserInterface $user, Client $client, string $redirectUri): AuthToken
     {
         $token = new AuthToken($this->hashGenerator->generate(), $client, $user, $redirectUri);
 
-        $this->entityManager->persist($token);
-        $this->entityManager->flush();
+        $this->authTokenRepository->save($token);
+
+        return $token;
     }
 }

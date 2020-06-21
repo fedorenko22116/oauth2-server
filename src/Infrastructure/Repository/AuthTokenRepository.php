@@ -2,14 +2,14 @@
 
 namespace App\Infrastructure\Repository;
 
+use App\Domain\Contract\Repository\AuthTokenRepositoryInterface;
 use App\Domain\Entity\AuthToken;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<AuthToken>
  */
-final class AuthTokenRepository extends ServiceEntityRepository
+final class AuthTokenRepository extends PersistenceRepository implements AuthTokenRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
