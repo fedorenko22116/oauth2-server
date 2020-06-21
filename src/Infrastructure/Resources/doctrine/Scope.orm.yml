@@ -1,0 +1,17 @@
+App\Application\Domain\Entity\Scope:
+    type: entity
+    table: scopes
+    repositoryClass: App\Application\Infrastructure\ScopeRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        name:
+            type: string
+        description:
+            type: string
+        default:
+            type: boolean

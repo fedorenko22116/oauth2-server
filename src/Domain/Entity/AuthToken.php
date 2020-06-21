@@ -2,42 +2,31 @@
 
 namespace App\Domain\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-/**
- * @ORM\Entity()
- */
 class AuthToken
 {
     /**
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", unique=true)
      * @var string
      */
     private $token;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
      * @var string
      */
-    private string $redirectUri;
+    private $redirectUri;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Client", inversedBy="authTokens")
      * @var Client
      */
     private $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="authTokens")
      * @var UserInterface
      */
     protected $user;

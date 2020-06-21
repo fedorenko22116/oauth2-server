@@ -2,15 +2,15 @@
 
 namespace App\Infrastructure\Repository;
 
+use App\Domain\Contract\Repository\ScopeRepositoryInterface;
 use App\Domain\Entity\Scope;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Scope>
  */
-final class ScopeRepository extends ServiceEntityRepository
+final class ScopeRepository extends PersistenceRepository implements ScopeRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {

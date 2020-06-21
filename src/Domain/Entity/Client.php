@@ -3,57 +3,42 @@
 namespace App\Domain\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/** @ORM\Entity(repositoryClass="App\Infrastructure\Repository\ClientRepository") */
 class Client
 {
     /**
-     * @ORM\Id()
-     * @ORM\Column(type="string")
-     * @ORM\GeneratedValue(strategy="UUID")
      * @var string
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
      * @var string
      */
     protected $secret;
 
     /**
-     * @ORM\Column(type="string")
      * @Assert\Url()
      * @var string
      */
     protected $host;
 
     /**
-     * @ORM\Column(type="array")
      * @var string[]
      */
     protected $grantTypes = [];
 
     /**
-     * @ORM\ManyToMany(targetEntity="Scope")
-     * @ORM\JoinTable(name="client_scope",
-     *      joinColumns={@ORM\JoinColumn(name="client_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="scope_id", referencedColumnName="id")}
-     * )
      * @var Collection<Scope>
      */
     protected $scopes;
 
     /**
-     * @ORM\OneToMany(targetEntity="AuthToken", mappedBy="client", orphanRemoval=true)
      * @var Collection<AuthToken>
      */
     protected $authTokens;
 
     /**
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="clients")
      * @var User
      */
     protected $user;

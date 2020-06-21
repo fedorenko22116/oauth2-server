@@ -4,29 +4,29 @@ namespace App\Domain\Service\Manager;
 
 use App\Domain\Contract\DateTimeInterface;
 use App\Domain\Contract\HashGeneratorInterface;
+use App\Domain\Contract\Repository\RefreshTokenRepositoryInterface;
+use App\Domain\Contract\Repository\ScopeRepositoryInterface;
 use App\Domain\Entity\RefreshToken;
-use App\Infrastructure\Repository\ScopeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class RefreshTokenManager implements RefreshTokenManagerInterface
 {
-    private EntityManagerInterface $entityManager;
     private HashGeneratorInterface $hashGenerator;
     private DateTimeInterface $dateTime;
-    private ScopeRepository $scopeRepository;
+    private ScopeRepositoryInterface $scopeRepository;
+    private RefreshTokenRepositoryInterface $refreshTokenRepository;
 
     public function __construct(
-        EntityManagerInterface $entityManager,
         HashGeneratorInterface $hashGenerator,
         DateTimeInterface $dateTime,
-        ScopeRepository $scopeRepository
+        ScopeRepositoryInterface $scopeRepository,
+        RefreshTokenRepositoryInterface $refreshTokenRepository
     ) {
-        $this->entityManager = $entityManager;
         $this->hashGenerator = $hashGenerator;
         $this->dateTime = $dateTime;
         $this->scopeRepository = $scopeRepository;
+        $this->refreshTokenRepository = $refreshTokenRepository;
     }
 
     public function createToken(UserInterface $user, ?ArrayCollection $scopes = null): RefreshToken
@@ -38,8 +38,7 @@ class RefreshTokenManager implements RefreshTokenManagerInterface
             $scopes ?? $this->scopeRepository->findDefaults()
         );
 
-        $this->entityManager->persist($token);
-        $this->entityManager->flush();
+        $this->refreshTokenRepository->save($token);
 
         return $token;
     }

@@ -1,0 +1,25 @@
+App\Application\Domain\Entity\AuthToken:
+    type: entity
+    table: auth_tokens
+    repositoryClass: App\Application\Infrastructure\ScopeRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        token:
+            type: string
+            unique: true
+        redirectUri:
+            type: string
+            nullable: true
+
+    manyToOne:
+        client:
+            targetEntity: Client
+            inversedBy: authTokens
+        user:
+            targetEntity: User
+            inversedBy: authTokens

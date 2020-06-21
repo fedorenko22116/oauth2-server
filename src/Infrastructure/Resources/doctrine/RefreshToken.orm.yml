@@ -1,0 +1,33 @@
+App\Application\Domain\Entity\RefreshToken:
+    type: entity
+    table: refresh_tokens
+    repositoryClass: App\Application\Infrastructure\RefreshTokenRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        token:
+            type: string
+            unique: true
+        expires:
+            type: datetime
+
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: refreshTokens
+
+    manyToMany:
+        scopes:
+            targetEntity: Scope
+            joinTable:
+                name: refresh_tokens_scopes
+                joinColumns:
+                    refresh_token_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    scope_id:
+                        referencedColumnName: id

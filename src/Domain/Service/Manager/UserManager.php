@@ -2,18 +2,19 @@
 
 namespace App\Domain\Service\Manager;
 
+use App\Domain\Contract\Repository\UserRepositoryInterface;
 use App\Domain\Entity\User;
 use App\Domain\Service\Util\PasswordUpdaterInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserManager implements UserManagerInterface
 {
-    private EntityManagerInterface $entityManager;
+    private UserRepositoryInterface $userRepository;
     private PasswordUpdaterInterface $passwordUpdater;
 
-    public function __construct(EntityManagerInterface $entityManager, PasswordUpdaterInterface $passwordUpdater)
+    public function __construct(UserRepositoryInterface $userRepository, PasswordUpdaterInterface $passwordUpdater)
     {
-        $this->entityManager = $entityManager;
+        $this->userRepository = $userRepository;
         $this->passwordUpdater = $passwordUpdater;
     }
 
@@ -27,12 +28,14 @@ class UserManager implements UserManagerInterface
         ;
 
         $this->passwordUpdater->hashPassword($user);
-        $this->entityManager->persist($user);
 
         try {
-            $this->entityManager->flush();
+            $this->userRepository->save($user);
+
+            return $user;
         } catch (\Throwable $exception) {
             return null;
         }
+
     }
 }

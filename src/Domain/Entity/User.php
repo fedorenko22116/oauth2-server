@@ -3,67 +3,53 @@
 namespace App\Domain\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-/**
- * @ORM\Entity(repositoryClass="App\Infrastructure\Repository\UserRepository")
- */
 class User implements UserInterface, EquatableInterface
 {
     public const ROLE_USER = 'ROLE_USER';
 
     /**
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     protected $id;
 
     /**
-     * @ORM\Column(type="string", unique=true)
      * @Assert\Length(min="4")
      * @var string
      */
     protected $username;
 
     /**
-     * @ORM\Column(type="string")
      * @Assert\Length(min="6")
      * @var string
      */
     protected $password;
 
     /**
-     * @ORM\Column(type="string", unique=true)
      * @Assert\Email()
      * @var string
      */
     protected $email;
 
     /**
-     * @ORM\Column(type="array")
      * @var string[]
      */
     protected $roles = [self::ROLE_USER];
 
     /**
-     * @ORM\OneToMany(targetEntity="RefreshToken", mappedBy="user")
      * @var Collection<RefreshToken>
      */
     protected $refreshTokens;
 
     /**
-     * @ORM\OneToMany(targetEntity="AuthToken", mappedBy="user")
      * @var Collection<AuthToken>
      */
     protected $authTokens;
 
     /**
-     * @ORM\OneToMany(targetEntity="Client", mappedBy="user")
      * @var Collection<Client>
      */
     private $clients;

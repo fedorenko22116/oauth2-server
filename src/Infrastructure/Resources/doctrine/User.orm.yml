@@ -1,0 +1,33 @@
+App\Application\Domain\Entity\User:
+    type: entity
+    table: users
+    repositoryClass: App\Application\Infrastructure\UserRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+
+    fields:
+        username:
+            type: string
+            length: 100
+            unique: true
+        email:
+            type: string
+            unique: true
+        password:
+            type: string
+        roles:
+            type: array
+
+    oneToMany:
+        refreshTokens:
+            targetEntity: RefreshToken
+            mappedBy: user
+        authTokens:
+            target: AuthToken
+            mappedBy: user
+        clients:
+            target: Client
+            mappedBy: user

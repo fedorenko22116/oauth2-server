@@ -1,0 +1,40 @@
+App\Application\Domain\Entity\Client:
+    type: entity
+    table: clients
+    repositoryClass: App\Application\Infrastructure\ClientRepository
+
+    id:
+        id:
+            type: integer
+            generator: { strategy: UUID }
+
+    fields:
+        secret:
+            type: string
+        host:
+            type: string
+        grantTypes:
+            type: array
+
+    oneToMany:
+        authTokens:
+            targetEntity: AuthToken
+            mappedBy: client
+            orphanRemoval: true
+
+    manyToOne:
+        user:
+            targetEntity: User
+            inversedBy: clients
+
+    manyToMany:
+        scopes:
+            targetEntity: Scope
+            joinTable:
+                name: clients_scopes
+                joinColumns:
+                    client_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    scope_id:
+                        referencedColumnName: id
