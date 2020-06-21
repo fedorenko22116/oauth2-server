@@ -2,7 +2,7 @@
 
 namespace App\Domain\Service\Token;
 
-interface TokenFacadeInterface
+interface TokenEncrypterInterface
 {
     public function encode(Payload $payload): string;
     public function decode(string $token): ?Payload;

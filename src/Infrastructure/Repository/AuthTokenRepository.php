@@ -6,13 +6,21 @@ use App\Domain\Entity\AuthToken;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
-class AuthTokenRepository extends ServiceEntityRepository
+/**
+ * @extends ServiceEntityRepository<AuthToken>
+ */
+final class AuthTokenRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, AuthToken::class);
     }
 
+    /**
+     * @param string $token
+     *
+     * @return AuthToken|object|null
+     */
     public function findOneByToken(string $token): ?AuthToken
     {
         return $this->findOneBy(['token' => $token]);

@@ -5,7 +5,7 @@ namespace App\Domain\Service\Token;
 use App\Domain\Contract\CryptographyInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class TokenFacade implements TokenFacadeInterface
+class TokenEncrypter implements TokenEncrypterInterface
 {
     private CryptographyInterface $cryptography;
     private SerializerInterface $serializer;

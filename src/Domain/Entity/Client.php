@@ -52,9 +52,27 @@ class Client
      */
     protected $authTokens;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="clients")
+     * @var User
+     */
+    protected $user;
+
     public function getId(): string
     {
         return $this->id;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
     }
 
     public function getSecret(): string

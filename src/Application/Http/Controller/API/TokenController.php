@@ -6,9 +6,11 @@ use App\Application\Http\Request\DTO\AccessToken\AuthorizationCodeRequest;
 use App\Application\Http\Request\DTO\AccessToken\ClientCredentialsRequest;
 use App\Application\Http\Request\DTO\AccessToken\PasswordRequest;
 use App\Application\Constants;
+use App\Application\Http\Response\ErrorResponse;
+use App\Domain\Entity\Client;
 use App\Domain\Service\Manager\RefreshTokenManagerInterface;
 use App\Domain\Service\Token\Factory\PayloadFactoryInterface;
-use App\Domain\Service\Token\TokenFacadeInterface;
+use App\Domain\Service\Token\TokenEncrypterInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -18,16 +20,16 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class TokenController extends AbstractFOSRestController
 {
-    private TokenFacadeInterface $tokenFacade;
+    private TokenEncrypterInterface $tokenEncrypter;
     private PayloadFactoryInterface $payloadFactory;
     private RefreshTokenManagerInterface $refreshTokenManager;
 
     public function __construct(
-        TokenFacadeInterface $tokenFacade,
+        TokenEncrypterInterface $tokenEncrypter,
         PayloadFactoryInterface $payloadFactory,
         RefreshTokenManagerInterface $refreshTokenManager
     ) {
-        $this->tokenFacade = $tokenFacade;
+        $this->tokenEncrypter = $tokenEncrypter;
         $this->payloadFactory = $payloadFactory;
         $this->refreshTokenManager = $refreshTokenManager;
     }
@@ -38,12 +40,16 @@ class TokenController extends AbstractFOSRestController
      *     condition="context.getParameter('grant_type') == 'authorization_code'"
      * )
      */
-    public function tokenAuthorizationCode(AuthorizationCodeRequest $request): JsonResponse
+    public function tokenAuthorizationCode(AuthorizationCodeRequest $request, ?Client $client): JsonResponse
     {
+        if (!$client && !$request->client) {
+            return new ErrorResponse(ErrorResponse::UNAUTHORIZED_CLIENT);
+        }
+
         $payload = $this->payloadFactory->create($request->token);
 
         return new JsonResponse([
-            'access_token'  => $this->tokenFacade->encode($payload),
+            'access_token'  => $this->tokenEncrypter->encode($payload),
             'token_type'    => Constants::TOKEN_TYPE,
             'expires_in'    => $payload->expires,
             'refresh_token' => $this->refreshTokenManager->createToken($request->token->getUser())->getToken(),
@@ -56,14 +62,14 @@ class TokenController extends AbstractFOSRestController
      *     condition="context.getParameter('grant_type') == 'client_credentials'"
      * )
      */
-    public function tokenClientCredentials(ClientCredentialsRequest $request): JsonResponse
+    public function tokenClientCredentials(ClientCredentialsRequest $request, Client $client): JsonResponse
     {
+        $payload = $this->payloadFactory->createDirect($client->getUser()->getUsername(), $request->getScopes());
+
         return new JsonResponse([
-            'access_token'  => '123',
-            'token_type'    => Constants::TOKEN_TYPE,
-            'expires_in'    => 123,
-            'scope'         => '123',
-            'state'         => '123',
+            "access_token"  => $this->tokenEncrypter->encode($payload),
+            "token_type"    => Constants::TOKEN_TYPE,
+            "expires_in"    => $payload->expires,
         ], 201);
     }
 
@@ -73,15 +79,15 @@ class TokenController extends AbstractFOSRestController
      *     condition="context.getParameter('grant_type') == 'password'"
      * )
      */
-    public function tokenPassword(PasswordRequest $request): JsonResponse
+    public function tokenPassword(PasswordRequest $request, Client $client): JsonResponse
     {
         $payload = $this->payloadFactory->createDirect($this->getUser()->getUsername(), $request->getScopes());
 
         return new JsonResponse([
-            "access_token"  => $this->tokenFacade->encode($payload),
+            "access_token"  => $this->tokenEncrypter->encode($payload),
             "token_type"    => Constants::TOKEN_TYPE,
             "expires_in"    => $payload->expires,
             "refresh_token" => $this->refreshTokenManager->createToken($this->getUser())->getToken(),
-        ]);
+        ], 201);
     }
 }

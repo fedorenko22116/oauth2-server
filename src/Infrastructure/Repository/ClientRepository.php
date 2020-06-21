@@ -16,6 +16,12 @@ final class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
+    /**
+     * @param string $id
+     * @param string $secret
+     *
+     * @return Client|object|null
+     */
     public function findByCredentials(string $id, string $secret): ?Client
     {
         return $this->findOneBy([

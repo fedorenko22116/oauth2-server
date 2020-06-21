@@ -63,6 +63,12 @@ class User implements UserInterface, EquatableInterface
     protected $authTokens;
 
     /**
+     * @ORM\OneToMany(targetEntity="Client", mappedBy="user")
+     * @var Collection<Client>
+     */
+    private $clients;
+
+    /**
      * @var string|null
      */
     private $salt;
@@ -195,5 +201,13 @@ class User implements UserInterface, EquatableInterface
     public function getAuthTokens(): ?Collection
     {
         return $this->authTokens;
+    }
+
+    /**
+     * @return Collection<Client>|null
+     */
+    public function getClients(): ?Collection
+    {
+        return $this->clients;
     }
 }

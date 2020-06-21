@@ -33,7 +33,7 @@ class AuthorizationCodeRequest extends AbstractRequest
     /**
      * @Entity(options={"id": "client_id"})
      */
-    public Client $client;
+    public ?Client $client;
 
     public function validate(ContainerInterface $container): bool
     {

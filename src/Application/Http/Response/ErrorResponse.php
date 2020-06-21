@@ -43,7 +43,7 @@ class ErrorResponse extends JsonResponse
         self::TEMPORARILY_UNAVAILABLE => 500,
     ];
 
-    private function __construct(string $error, string $errorUri = '', string $state = '')
+    public function __construct(string $error, string $errorUri = '', string $state = '')
     {
         Assert::inArray($error, array_keys(self::MESSAGES), 'Invalid error code given');
         Assert::inArray($error, array_keys(self::CODES), 'Code is not implemented');

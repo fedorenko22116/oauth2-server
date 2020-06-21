@@ -2,7 +2,8 @@
 
 namespace App\Application\Http\Security;
 
-use App\Domain\Service\Token\TokenFacadeInterface;
+use App\Application\Service\Request\Extractor\BearerRequestExtractor;
+use App\Domain\Service\Token\TokenEncrypterInterface;
 use App\Infrastructure\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,13 +16,18 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class JWTAuthenticator extends AbstractGuardAuthenticator
 {
-    private TokenFacadeInterface $tokenFacade;
+    private TokenEncrypterInterface $tokenEncrypter;
     private UserRepository $userRepository;
+    private BearerRequestExtractor $bearerRequestExtractor;
 
-    public function __construct(TokenFacadeInterface $tokenFacade, UserRepository $userRepository)
-    {
-        $this->tokenFacade = $tokenFacade;
+    public function __construct(
+        TokenEncrypterInterface $tokenEncrypter,
+        UserRepository $userRepository,
+        BearerRequestExtractor $bearerRequestExtractor
+    ) {
+        $this->tokenEncrypter = $tokenEncrypter;
         $this->userRepository = $userRepository;
+        $this->bearerRequestExtractor = $bearerRequestExtractor;
     }
 
     public function start(Request $request, AuthenticationException $authException = null): JsonResponse
@@ -33,18 +39,17 @@ class JWTAuthenticator extends AbstractGuardAuthenticator
 
     public function supports(Request $request): bool
     {
-        return $request->headers->has('Authorization') &&
-            preg_match('/.*Bearer\s(.*)$/', $request->headers->get('Authorization'));
+        return $this->bearerRequestExtractor->has($request);
     }
 
     public function getCredentials(Request $request): string
     {
-        return trim(preg_replace('/.*Bearer\s/', '', $request->headers->get('Authorization')));
+        return $this->bearerRequestExtractor->get($request);
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
-        $token = $this->tokenFacade->decode($credentials);
+        $token = $this->tokenEncrypter->decode($credentials);
 
         if (!$token) {
             return null;
@@ -55,7 +60,7 @@ class JWTAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user): bool
     {
-        return (bool) $this->tokenFacade->decode($credentials);
+        return (bool) $this->tokenEncrypter->decode($credentials);
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): JsonResponse

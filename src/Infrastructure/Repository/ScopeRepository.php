@@ -7,7 +7,10 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
-class ScopeRepository extends ServiceEntityRepository
+/**
+ * @extends ServiceEntityRepository<Scope>
+ */
+final class ScopeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
