@@ -2,7 +2,7 @@
 
 namespace App\Domain\Service\Token;
 
-use App\Infrastructure\Service\Cryptography\CryptographyInterface;
+use App\Domain\Contract\CryptographyInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class TokenFacade implements TokenFacadeInterface

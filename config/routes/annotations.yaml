@@ -1,10 +1,10 @@
 controllers_api:
-    resource: ../../src/Application/Controller/
+    resource: ../../src/Application/Http/Controller/
     type: annotation
     prefix: /api
 
 controllers:
-    resource: ../../src/Application/Controller/
+    resource: ../../src/Application/Http/Controller/
     type: annotation
 
 kernel:

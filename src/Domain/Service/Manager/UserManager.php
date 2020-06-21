@@ -3,7 +3,7 @@
 namespace App\Domain\Service\Manager;
 
 use App\Domain\Entity\User;
-use App\Infrastructure\Service\Hash\PasswordUpdaterInterface;
+use App\Domain\Service\Util\PasswordUpdaterInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 class UserManager implements UserManagerInterface

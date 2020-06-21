@@ -2,11 +2,10 @@
 
 namespace App\Domain\Service\Manager;
 
+use App\Domain\Contract\DateTimeInterface;
+use App\Domain\Contract\HashGeneratorInterface;
 use App\Domain\Entity\RefreshToken;
-use App\Domain\Entity\Scope;
 use App\Infrastructure\Repository\ScopeRepository;
-use App\Infrastructure\Service\Date\DateTimeInterface;
-use App\Infrastructure\Service\Hash\HashGeneratorInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

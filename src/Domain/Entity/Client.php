@@ -11,9 +11,9 @@ class Client
 {
     /**
      * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     * @var int
+     * @ORM\Column(type="string")
+     * @ORM\GeneratedValue(strategy="UUID")
+     * @var string
      */
     protected $id;
 
@@ -52,7 +52,7 @@ class Client
      */
     protected $authTokens;
 
-    public function getId(): int
+    public function getId(): string
     {
         return $this->id;
     }

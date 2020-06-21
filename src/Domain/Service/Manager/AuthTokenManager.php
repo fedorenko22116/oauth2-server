@@ -2,9 +2,9 @@
 
 namespace App\Domain\Service\Manager;
 
+use App\Domain\Contract\HashGeneratorInterface;
 use App\Domain\Entity\AuthToken;
 use App\Domain\Entity\Client;
-use App\Infrastructure\Service\Hash\HashGeneratorInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 

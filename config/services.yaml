@@ -19,14 +19,14 @@ services:
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
-    App\Application\Controller\:
-        resource: '../src/Application/Controller'
+    App\Application\Http\Controller\:
+        resource: '../src/Application/Http/Controller'
         tags: ['controller.service_arguments']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
-    App\Infrastructure\Service\Cryptography\JWTCryptography:
+    App\Application\Service\Cryptography\JWTCryptography:
         arguments: ['%env(RSA_KEY_PATH)%']
 
     App\Infrastructure\Service\Date\ComparatorStrategyInterface: '@App\Infrastructure\Service\Date\GteComparatorStrategy'
