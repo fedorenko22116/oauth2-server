@@ -1,4 +1,6 @@
 easy_admin:
     entities:
-        - App\Domain\Entity\User
-        - App\Domain\Entity\Client
+        - App\Domain\User\Entity\User
+        - App\Domain\Client\Entity\Client
+        - App\Domain\Scope\Entity\Scope
+        - App\Domain\RefreshToken\Entity\RefreshToken
