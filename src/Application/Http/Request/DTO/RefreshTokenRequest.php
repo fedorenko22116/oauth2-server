@@ -2,9 +2,9 @@
 
 namespace App\Application\Http\Request\DTO;
 
-use App\Domain\Entity\RefreshToken;
-use App\Infrastructure\Service\Date\DateTimeInterface;
-use App\Infrastructure\Service\DateComparatorInterface;
+use App\Application\Service\DateComparatorInterface;
+use App\Domain\RefreshToken\Entity\RefreshToken;
+use App\Domain\Shared\Contract\DateTimeInterface;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;

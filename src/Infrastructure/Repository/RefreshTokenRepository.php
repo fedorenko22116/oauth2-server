@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\Contract\Repository\RefreshTokenRepositoryInterface;
-use App\Domain\Entity\RefreshToken;
+use App\Domain\RefreshToken\Contract\RefreshTokenRepositoryInterface;
+use App\Domain\RefreshToken\Entity\RefreshToken;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -24,15 +24,5 @@ final class RefreshTokenRepository extends PersistenceRepository implements  Ref
     public function findOneByToken(string $token): ?RefreshToken
     {
         return $this->findOneBy(['token' =>  $token]);
-    }
-
-    public function save(object $object): void
-    {
-        // TODO: Implement save() method.
-    }
-
-    public function remove(object $object): void
-    {
-        // TODO: Implement remove() method.
     }
 }

@@ -3,7 +3,7 @@
 namespace App\Application\Http\Request\ParamConverter;
 
 use App\Application\Service\Request\Extractor\BasicRequestExtractor;
-use App\Domain\Entity\Client;
+use App\Domain\Client\Entity\Client;
 use App\Infrastructure\Repository\ClientRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;

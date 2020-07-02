@@ -2,12 +2,13 @@
 
 namespace App\Application\Service\Date;
 
-use App\Domain\Contract\DateTimeInterface;
+use App\Domain\Shared\Contract\DateTimeInterface;
+use DateTime;
 
 class DateTimeProvider implements DateTimeInterface
 {
-    public function getDate(): \DateTime
+    public function getDate(): DateTime
     {
-        return new \DateTime();
+        return new DateTime();
     }
 }

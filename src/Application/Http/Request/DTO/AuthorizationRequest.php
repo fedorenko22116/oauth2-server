@@ -2,9 +2,9 @@
 
 namespace App\Application\Http\Request\DTO;
 
-use App\Domain\Entity\Client;
-use App\Domain\Entity\Scope;
-use App\Infrastructure\Service\Request\Host\HostComparatorInterface;
+use App\Application\Service\Request\Host\HostComparatorInterface;
+use App\Domain\Client\Entity\Client;
+use App\Domain\Scope\Entity\Scope;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Psr\Container\ContainerInterface;

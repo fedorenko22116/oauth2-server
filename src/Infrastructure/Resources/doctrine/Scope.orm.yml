@@ -1,7 +1,7 @@
-App\Application\Domain\Entity\Scope:
+App\Domain\Scope\Entity\Scope:
     type: entity
     table: scopes
-    repositoryClass: App\Application\Infrastructure\ScopeRepository
+    repositoryClass: App\Infrastructure\Repository\ScopeRepository
 
     id:
         id:

@@ -2,7 +2,7 @@
 
 namespace App\Application\Http\Request\Form\Type;
 
-use App\Domain\Service\Manager\RegisterUserDTO;
+use App\Domain\User\RegisterUserDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;

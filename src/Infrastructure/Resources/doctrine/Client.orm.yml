@@ -1,7 +1,7 @@
-App\Application\Domain\Entity\Client:
+App\Domain\Client\Entity\Client:
     type: entity
     table: clients
-    repositoryClass: App\Application\Infrastructure\ClientRepository
+    repositoryClass: App\Infrastructure\Repository\ClientRepository
 
     id:
         id:
@@ -18,18 +18,18 @@ App\Application\Domain\Entity\Client:
 
     oneToMany:
         authTokens:
-            targetEntity: AuthToken
+            targetEntity: App\Domain\AuthToken\Entity\AuthToken
             mappedBy: client
             orphanRemoval: true
 
     manyToOne:
         user:
-            targetEntity: User
+            targetEntity: App\Domain\User\Entity\User
             inversedBy: clients
 
     manyToMany:
         scopes:
-            targetEntity: Scope
+            targetEntity: App\Domain\Scope\Entity\Scope
             joinTable:
                 name: clients_scopes
                 joinColumns:

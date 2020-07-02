@@ -3,7 +3,7 @@
 namespace App\Application\Http\Security;
 
 use App\Application\Service\Request\Extractor\BearerRequestExtractor;
-use App\Domain\Service\Token\TokenEncrypterInterface;
+use App\Domain\AccessToken\AccessTokenService;
 use App\Infrastructure\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,12 +16,12 @@ use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 
 class JWTAuthenticator extends AbstractGuardAuthenticator
 {
-    private TokenEncrypterInterface $tokenEncrypter;
+    private AccessTokenService $tokenEncrypter;
     private UserRepository $userRepository;
     private BearerRequestExtractor $bearerRequestExtractor;
 
     public function __construct(
-        TokenEncrypterInterface $tokenEncrypter,
+        AccessTokenService $tokenEncrypter,
         UserRepository $userRepository,
         BearerRequestExtractor $bearerRequestExtractor
     ) {

@@ -2,14 +2,13 @@
 
 namespace App\Application\Service\ViewModel\Token;
 
-use App\Application\Http\Request\DTO\AccessToken\AuthorizationCodeRequest;
 use App\Application\Http\Request\DTO\AccessToken\PasswordRequest;
 use App\Application\Service\ViewModel\Token\View\TokenModel;
 use App\Application\Service\ViewModel\ViewInterface;
 use App\Application\Service\ViewModel\ViewModelInterface;
-use App\Domain\Service\Manager\RefreshTokenManagerInterface;
-use App\Domain\Service\Token\Factory\PayloadFactoryInterface;
-use App\Domain\Service\Token\TokenEncrypterInterface;
+use App\Domain\AccessToken\AccessTokenService;
+use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
+use App\Domain\RefreshToken\RefreshTokenService;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Webmozart\Assert\Assert;
@@ -17,14 +16,14 @@ use Webmozart\Assert\Assert;
 class PasswordViewModel  implements ViewModelInterface
 {
     private PayloadFactoryInterface $payloadFactory;
-    private TokenEncrypterInterface $tokenEncrypter;
-    private RefreshTokenManagerInterface $refreshTokenManager;
+    private AccessTokenService $tokenEncrypter;
+    private RefreshTokenService $refreshTokenManager;
     private TokenStorageInterface $tokenStorage;
 
     public function __construct(
         PayloadFactoryInterface $payloadFactory,
-        TokenEncrypterInterface $tokenEncrypter,
-        RefreshTokenManagerInterface $refreshTokenManager,
+        AccessTokenService $tokenEncrypter,
+        RefreshTokenService $refreshTokenManager,
         TokenStorageInterface $tokenStorage
     ) {
         $this->payloadFactory = $payloadFactory;

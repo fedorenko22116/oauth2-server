@@ -6,22 +6,22 @@ use App\Application\Http\Request\DTO\AccessToken\AuthorizationCodeRequest;
 use App\Application\Service\ViewModel\Token\View\TokenModel;
 use App\Application\Service\ViewModel\ViewInterface;
 use App\Application\Service\ViewModel\ViewModelInterface;
-use App\Domain\Service\Manager\RefreshTokenManagerInterface;
-use App\Domain\Service\Token\Factory\PayloadFactoryInterface;
-use App\Domain\Service\Token\TokenEncrypterInterface;
+use App\Domain\AccessToken\AccessTokenService;
+use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
+use App\Domain\RefreshToken\RefreshTokenService;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Webmozart\Assert\Assert;
 
 class AuthorizationCodeViewModel implements ViewModelInterface
 {
     private PayloadFactoryInterface $payloadFactory;
-    private TokenEncrypterInterface $tokenEncrypter;
-    private RefreshTokenManagerInterface $refreshTokenManager;
+    private AccessTokenService $tokenEncrypter;
+    private RefreshTokenService $refreshTokenManager;
 
     public function __construct(
         PayloadFactoryInterface $payloadFactory,
-        TokenEncrypterInterface $tokenEncrypter,
-        RefreshTokenManagerInterface $refreshTokenManager
+        AccessTokenService $tokenEncrypter,
+        RefreshTokenService $refreshTokenManager
     ) {
         $this->payloadFactory = $payloadFactory;
         $this->tokenEncrypter = $tokenEncrypter;

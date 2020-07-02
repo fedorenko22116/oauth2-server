@@ -3,8 +3,7 @@
 namespace App\Application\Service\Cryptography;
 
 use Ahc\Jwt\JWT;
-use Ahc\Jwt\JWTException;
-use App\Domain\Contract\CryptographyInterface;
+use App\Domain\AccessToken\Contract\CryptographyInterface;
 
 class JWTCryptography implements CryptographyInterface
 {
@@ -15,16 +14,19 @@ class JWTCryptography implements CryptographyInterface
         $this->jwt = new JWT(file_get_contents($privateKeyPath), 'RS256');
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function encode(array $payload): string
     {
-        $this->jwt->encode($payload);
+        return $this->jwt->encode($payload);
     }
 
     /**
-     * @throws JWTException
+     * {@inheritDoc}
      */
     public function decode(string $payload): array
     {
-        $this->jwt->decode($payload);
+        return $this->jwt->decode($payload);
     }
 }

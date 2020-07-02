@@ -6,17 +6,17 @@ use App\Application\Http\Request\DTO\AccessToken\ClientCredentialsRequest;
 use App\Application\Service\ViewModel\Token\View\ClientCredentialsModel;
 use App\Application\Service\ViewModel\ViewInterface;
 use App\Application\Service\ViewModel\ViewModelInterface;
-use App\Domain\Service\Token\Factory\PayloadFactoryInterface;
-use App\Domain\Service\Token\TokenEncrypterInterface;
+use App\Domain\AccessToken\AccessTokenService;
+use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Webmozart\Assert\Assert;
 
 class ClientCredentialsViewModel implements ViewModelInterface
 {
     private PayloadFactoryInterface $payloadFactory;
-    private TokenEncrypterInterface $tokenEncrypter;
+    private AccessTokenService $tokenEncrypter;
 
-    public function __construct(PayloadFactoryInterface $payloadFactory, TokenEncrypterInterface $tokenEncrypter)
+    public function __construct(PayloadFactoryInterface $payloadFactory, AccessTokenService $tokenEncrypter)
     {
         $this->payloadFactory = $payloadFactory;
         $this->tokenEncrypter = $tokenEncrypter;

@@ -2,7 +2,9 @@
 
 namespace App\Application\Service\Date;
 
+use DateTime;
+
 interface ComparatorStrategyInterface
 {
-    public function compare(\DateTime $dateTimeA, \DateTime $dateTimeB): bool;
+    public function compare(DateTime $dateTimeA, DateTime $dateTimeB): bool;
 }

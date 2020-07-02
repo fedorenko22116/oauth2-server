@@ -1,7 +1,7 @@
-App\Application\Domain\Entity\RefreshToken:
+App\Domain\RefreshToken\Entity\RefreshToken:
     type: entity
     table: refresh_tokens
-    repositoryClass: App\Application\Infrastructure\RefreshTokenRepository
+    repositoryClass: App\Infrastructure\Repository\RefreshTokenRepository
 
     id:
         id:
@@ -17,12 +17,12 @@ App\Application\Domain\Entity\RefreshToken:
 
     manyToOne:
         user:
-            targetEntity: User
+            targetEntity: App\Domain\User\Entity\User
             inversedBy: refreshTokens
 
     manyToMany:
         scopes:
-            targetEntity: Scope
+            targetEntity: App\Domain\Scope\Entity\Scope
             joinTable:
                 name: refresh_tokens_scopes
                 joinColumns:

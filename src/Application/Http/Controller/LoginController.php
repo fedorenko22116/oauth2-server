@@ -5,9 +5,9 @@ namespace App\Application\Http\Controller;
 use App\Application\Http\Request\DTO\AuthorizationRequest;
 use App\Application\Http\Request\Form\Type\RegisterType;
 use App\Application\Service\UrlGeneratorInterface;
-use App\Domain\Service\Manager\AuthTokenManagerInterface;
-use App\Domain\Service\Manager\RegisterUserDTO;
-use App\Domain\Service\Manager\UserManagerInterface;
+use App\Domain\AuthToken\AuthTokenService;
+use App\Domain\User\RegisterUserDTO;
+use App\Domain\User\UserService;
 use Exception;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -24,7 +24,7 @@ class LoginController extends AbstractFOSRestController
     public function authenticate(
         AuthorizationRequest $request,
         AuthenticationUtils $authenticationUtils,
-        AuthTokenManagerInterface $authTokenManager,
+        AuthTokenService $authTokenManager,
         UrlGeneratorInterface $urlGenerator
     ): Response {
         $client = $request->client;
@@ -49,7 +49,7 @@ class LoginController extends AbstractFOSRestController
     /**
      * @Rest\Get("/register")
      */
-    public function register(Request $request, UserManagerInterface $userManager): Response
+    public function register(Request $request, UserService $userManager): Response
     {
         $registerUser = new RegisterUserDTO();
         $form = $this->createForm(RegisterType::class, $registerUser);

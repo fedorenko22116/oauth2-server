@@ -1,7 +1,7 @@
-App\Application\Domain\Entity\User:
+App\Domain\User\Entity\User:
     type: entity
     table: users
-    repositoryClass: App\Application\Infrastructure\UserRepository
+    repositoryClass: App\Infrastructure\Repository\UserRepository
 
     id:
         id:
@@ -23,11 +23,11 @@ App\Application\Domain\Entity\User:
 
     oneToMany:
         refreshTokens:
-            targetEntity: RefreshToken
+            targetEntity: App\Domain\RefreshToken\Entity\RefreshToken
             mappedBy: user
         authTokens:
-            target: AuthToken
+            target: App\Domain\AuthToken\Entity\AuthToken
             mappedBy: user
         clients:
-            target: Client
+            target: App\Domain\Client\Entity\Client
             mappedBy: user

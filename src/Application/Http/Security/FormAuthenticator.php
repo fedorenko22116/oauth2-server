@@ -2,8 +2,7 @@
 
 namespace App\Application\Http\Security;
 
-use App\Constants;
-use App\Domain\Entity\User;
+use App\Domain\User\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

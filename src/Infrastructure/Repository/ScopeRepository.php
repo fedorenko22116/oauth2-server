@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\Contract\Repository\ScopeRepositoryInterface;
-use App\Domain\Entity\Scope;
+use App\Domain\Scope\Contract\ScopeRepositoryInterface;
+use App\Domain\Scope\Entity\Scope;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 

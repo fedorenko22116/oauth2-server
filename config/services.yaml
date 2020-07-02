@@ -29,9 +29,8 @@ services:
     App\Application\Service\Cryptography\JWTCryptography:
         arguments: ['%env(RSA_KEY_PATH)%']
 
-    App\Infrastructure\Service\Date\ComparatorStrategyInterface: '@App\Infrastructure\Service\Date\GteComparatorStrategy'
     Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter: '@serializer.name_converter.camel_case_to_snake_case'
 
-    App\Infrastructure\Service\Request\Host\HostComparatorInterface:
-        class: App\Infrastructure\Service\Request\Host\HostComparator
+    App\Application\Service\Request\Host\HostComparatorInterface:
+        class: App\Application\Service\Request\Host\HostComparator
         public: true

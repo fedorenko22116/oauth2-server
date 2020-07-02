@@ -2,7 +2,7 @@
 
 namespace App\Application\Service\Hash;
 
-use App\Domain\Contract\HashGeneratorInterface;
+use App\Domain\Shared\Contract\HashGeneratorInterface;
 
 class Base64HashGenerator implements HashGeneratorInterface
 {

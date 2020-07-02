@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\Contract\Repository\AuthTokenRepositoryInterface;
-use App\Domain\Entity\AuthToken;
+use App\Domain\AuthToken\Contract\AuthTokenRepositoryInterface;
+use App\Domain\AuthToken\Entity\AuthToken;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**

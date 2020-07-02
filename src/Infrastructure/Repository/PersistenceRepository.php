@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\Contract\Repository\PersistenceRepositoryInterface;
+use App\Domain\Shared\Contract\PersistenceRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 abstract class PersistenceRepository extends ServiceEntityRepository implements PersistenceRepositoryInterface

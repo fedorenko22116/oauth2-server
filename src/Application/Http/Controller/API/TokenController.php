@@ -9,7 +9,7 @@ use App\Application\Http\Response\ErrorResponse;
 use App\Application\Service\ViewModel\Token\AuthorizationCodeViewModel;
 use App\Application\Service\ViewModel\Token\ClientCredentialsViewModel;
 use App\Application\Service\ViewModel\Token\PasswordViewModel;
-use App\Domain\Entity\Client;
+use App\Domain\Client\Entity\Client;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;

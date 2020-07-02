@@ -1,7 +1,7 @@
-App\Application\Domain\Entity\AuthToken:
+App\Domain\AuthToken\Entity\AuthToken:
     type: entity
     table: auth_tokens
-    repositoryClass: App\Application\Infrastructure\ScopeRepository
+    repositoryClass: App\Infrastructure\Repository\ScopeRepository
 
     id:
         id:
@@ -18,8 +18,8 @@ App\Application\Domain\Entity\AuthToken:
 
     manyToOne:
         client:
-            targetEntity: Client
+            targetEntity: App\Domain\Client\Entity\Client
             inversedBy: authTokens
         user:
-            targetEntity: User
+            targetEntity: App\Domain\User\Entity\User
             inversedBy: authTokens

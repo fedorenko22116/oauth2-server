@@ -2,8 +2,8 @@
 
 namespace App\Infrastructure\Repository;
 
-use App\Domain\Contract\Repository\UserRepositoryInterface;
-use App\Domain\Entity\User;
+use App\Domain\User\Contract\UserRepositoryInterface;
+use App\Domain\User\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
