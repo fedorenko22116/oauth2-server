@@ -1,11 +1,18 @@
+.PHONY: up down stop build build-dev
+
+PROJECT_NAME?=oauth2-server
+
 up:
-	docker-compose -f .docker/docker-compose.yml up -d
+	docker-compose -p ${PROJECT_NAME} -f .docker/dev/docker-compose.yml up -d
 
 down:
-	docker-compose -f .docker/docker-compose.yml down
+	docker-compose -p ${PROJECT_NAME} -f .docker/dev/docker-compose.yml down
 
 stop:
-	docker-compose -f .docker/docker-compose.yml stop
+	docker-compose -p ${PROJECT_NAME} -f .docker/dev/docker-compose.yml stop
 
 build:
-	docker-compose -f .docker/docker-compose.yml build
+	docker build . --tag oauth2-server:latest --file .docker/prod/Dockerfile
+
+build-dev: build
+	docker build . --tag oauth2-server-dev:latest --file .docker/dev/Dockerfile

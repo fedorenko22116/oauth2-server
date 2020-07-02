@@ -1,9 +1,9 @@
 version: '3.4'
 services:
   app:
-    build: ..
+    image: oauth2-server-dev:latest
     volumes:
-      - ..:/var/www/root
+      - ../..:/var/www/root
       - ~/.ssh:/.ssh
   db:
     image: mysql
@@ -19,5 +19,5 @@ services:
     ports:
       - 8000:80
     volumes:
-      - ..:/var/www/root
+      - ../..:/var/www/root
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
