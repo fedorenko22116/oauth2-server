@@ -26,8 +26,8 @@ App\Domain\User\Entity\User:
             targetEntity: App\Domain\RefreshToken\Entity\RefreshToken
             mappedBy: user
         authTokens:
-            target: App\Domain\AuthToken\Entity\AuthToken
+            targetEntity: App\Domain\AuthToken\Entity\AuthToken
             mappedBy: user
         clients:
-            target: App\Domain\Client\Entity\Client
+            targetEntity: App\Domain\Client\Entity\Client
             mappedBy: user
