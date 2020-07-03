@@ -6,6 +6,7 @@ use App\Domain\AuthToken\Entity\AuthToken;
 use App\Domain\Client\Entity\Client;
 use App\Domain\RefreshToken\Entity\RefreshToken;
 use Doctrine\Common\Collections\Collection;
+use EasyCorp\Bundle\EasyAdminBundle\Contracts\Collection\CollectionInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,58 +15,45 @@ class User implements UserInterface, EquatableInterface
 {
     public const ROLE_USER = 'ROLE_USER';
 
-    /**
-     * @var int
-     */
-    protected $id;
+    protected int $id = 0;
 
     /**
      * @Assert\Length(min="4")
-     * @var string
      */
-    protected $username;
+    protected string $username = '';
 
     /**
      * @Assert\Length(min="6")
-     * @var string
      */
-    protected $password;
+    protected string $password = '';
 
     /**
      * @Assert\Email()
-     * @var string
      */
-    protected $email;
+    protected string $email = '';
 
     /**
      * @var string[]
      */
-    protected $roles = [self::ROLE_USER];
+    protected array $roles = [self::ROLE_USER];
 
     /**
-     * @var Collection<RefreshToken>
+     * @var CollectionInterface<RefreshToken>|null
      */
-    protected $refreshTokens;
+    protected ?CollectionInterface $refreshTokens;
 
     /**
-     * @var Collection<AuthToken>
+     * @var CollectionInterface<AuthToken>|null
      */
-    protected $authTokens;
+    protected ?CollectionInterface $authTokens;
 
     /**
-     * @var Collection<Client>
+     * @var CollectionInterface<Client>|null
      */
-    private $clients;
+    private ?CollectionInterface $clients;
 
-    /**
-     * @var string|null
-     */
-    private $salt;
-
-    /**
-     * @var string
-     */
-    private $plainPassword = '';
+    private ?string $salt;
+    private string $plainPassword = '';
 
     public function getId(): int
     {
@@ -144,9 +132,9 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @return Collection<RefreshToken>|null
+     * @return CollectionInterface<RefreshToken>|null
      */
-    public function getRefreshTokens(): ?Collection
+    public function getRefreshTokens(): ?CollectionInterface
     {
         return $this->refreshTokens;
     }
@@ -163,10 +151,10 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @param Collection<RefreshToken> $refreshTokens
+     * @param CollectionInterface<RefreshToken> $refreshTokens
      * @return self
      */
-    public function setRefreshTokens(Collection $refreshTokens): self
+    public function setRefreshTokens(CollectionInterface $refreshTokens): self
     {
         $this->refreshTokens = $refreshTokens;
 
@@ -174,10 +162,10 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @param Collection<AuthToken> $authTokens
+     * @param CollectionInterface<AuthToken> $authTokens
      * @return self
      */
-    public function setAuthTokens(Collection $authTokens): self
+    public function setAuthTokens(CollectionInterface $authTokens): self
     {
         $this->authTokens = $authTokens;
 
@@ -185,7 +173,7 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @return Collection<AuthToken>|null
+     * @return CollectionInterface<AuthToken>|null
      */
     public function getAuthTokens(): ?Collection
     {
@@ -193,7 +181,7 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @return Collection<Client>|null
+     * @return CollectionInterface<Client>|null
      */
     public function getClients(): ?Collection
     {

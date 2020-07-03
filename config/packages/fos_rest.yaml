@@ -1,8 +1,8 @@
 # Read the documentation: https://symfony.com/doc/master/bundles/FOSRestBundle/index.html
 fos_rest:
-    param_fetcher_listener:  true
+    param_fetcher_listener:  false
     allowed_methods_listener:  true
-    routing_loader: true
+    routing_loader: false
     view:
         view_response_listener:  true
     format_listener:
@@ -10,3 +10,6 @@ fos_rest:
             - { path: ^/api, prefer_extension: true, fallback_format: json, priorities: [ json, html ] }
     zone:
       - { path: ^/api/* }
+    exception:
+        codes:
+            'Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException': 422
