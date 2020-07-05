@@ -19,5 +19,3 @@ RUN echo "memory_limit=-1" >> /usr/local/etc/php/php.ini && \
     echo "xdebug.remote_log = \"/tmp/xdebug.log\"" >> ${XDEBUG_PATH} && \
     echo "xdebug.remote_port = 9005" >> ${XDEBUG_PATH} && \
     echo "xdebug.remote_host = ${XDEBUG_HOST}" >> ${XDEBUG_PATH}
-
-EXPOSE 9000
