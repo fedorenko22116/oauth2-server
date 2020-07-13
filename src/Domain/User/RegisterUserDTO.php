@@ -4,7 +4,7 @@ namespace App\Domain\User;
 
 class RegisterUserDTO
 {
-    public $username;
-    public $password;
-    public $email;
+    public ?string $username;
+    public ?string $password;
+    public ?string $email;
 }

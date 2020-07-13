@@ -13,7 +13,7 @@ use LSBProject\RequestBundle\Request\AbstractRequest;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Webmozart\Assert\Assert;
 
-class PasswordViewModel  implements ViewModelInterface
+final class PasswordViewModel  implements ViewModelInterface
 {
     private PayloadFactoryInterface $payloadFactory;
     private AccessTokenService $tokenEncrypter;

@@ -10,5 +10,11 @@ interface CryptographyInterface
      * @return string
      */
     public function encode(array $data): string;
+
+    /**
+     * @param string $payload
+     *
+     * @return array<string, mixed>
+     */
     public function decode(string $payload): array;
 }

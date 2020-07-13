@@ -5,7 +5,7 @@ namespace App\Application\Service\Date;
 use App\Domain\Shared\Contract\DateTimeInterface;
 use DateTime;
 
-class DateTimeProvider implements DateTimeInterface
+final class DateTimeProvider implements DateTimeInterface
 {
     public function getDate(): DateTime
     {

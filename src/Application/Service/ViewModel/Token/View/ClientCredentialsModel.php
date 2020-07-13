@@ -5,7 +5,7 @@ namespace App\Application\Service\ViewModel\Token\View;
 use App\Application\Constants;
 use App\Application\Service\ViewModel\ViewInterface;
 
-class ClientCredentialsModel implements ViewInterface
+final class ClientCredentialsModel implements ViewInterface
 {
     private string $accessToken;
     private int $expires;

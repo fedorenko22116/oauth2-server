@@ -8,6 +8,7 @@ use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Psr\Container\ContainerInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @RequestStorage({"body"})

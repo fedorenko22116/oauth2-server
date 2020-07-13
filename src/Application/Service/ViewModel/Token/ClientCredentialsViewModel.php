@@ -11,7 +11,7 @@ use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Webmozart\Assert\Assert;
 
-class ClientCredentialsViewModel implements ViewModelInterface
+final class ClientCredentialsViewModel implements ViewModelInterface
 {
     private PayloadFactoryInterface $payloadFactory;
     private AccessTokenService $tokenEncrypter;

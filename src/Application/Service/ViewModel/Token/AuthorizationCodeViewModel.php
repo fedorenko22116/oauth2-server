@@ -12,19 +12,19 @@ use App\Domain\RefreshToken\RefreshTokenService;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Webmozart\Assert\Assert;
 
-class AuthorizationCodeViewModel implements ViewModelInterface
+final class AuthorizationCodeViewModel implements ViewModelInterface
 {
     private PayloadFactoryInterface $payloadFactory;
-    private AccessTokenService $tokenEncrypter;
+    private AccessTokenService $accessTokenService;
     private RefreshTokenService $refreshTokenManager;
 
     public function __construct(
         PayloadFactoryInterface $payloadFactory,
-        AccessTokenService $tokenEncrypter,
+        AccessTokenService $accessTokenService,
         RefreshTokenService $refreshTokenManager
     ) {
         $this->payloadFactory = $payloadFactory;
-        $this->tokenEncrypter = $tokenEncrypter;
+        $this->accessTokenService = $accessTokenService;
         $this->refreshTokenManager = $refreshTokenManager;
     }
 
@@ -40,7 +40,7 @@ class AuthorizationCodeViewModel implements ViewModelInterface
         $payload = $this->payloadFactory->create($request->token);
 
         return new TokenModel(
-            $this->tokenEncrypter->encode($payload),
+            $this->accessTokenService->encode($payload),
             $payload->expires,
             $this->refreshTokenManager->createToken($request->token->getUser())->getToken(),
         );

@@ -5,7 +5,7 @@ namespace App\Application\Http\Controller;
 use App\Application\Http\Request\DTO\AuthorizationRequest;
 use App\Application\Http\Request\Form\Type\RegisterType;
 use App\Application\Service\UrlGeneratorInterface;
-use App\Domain\AuthToken\AuthTokenService;
+use App\Application\Service\ViewModel\Authorization\AuthorizationViewModel;
 use App\Domain\User\RegisterUserDTO;
 use App\Domain\User\UserService;
 use Exception;
@@ -23,19 +23,16 @@ class LoginController extends AbstractFOSRestController
      */
     public function authenticate(
         AuthorizationRequest $request,
+        AuthorizationViewModel $model,
         AuthenticationUtils $authenticationUtils,
-        AuthTokenService $authTokenManager,
         UrlGeneratorInterface $urlGenerator
     ): Response {
         $client = $request->client;
 
         if ($this->getUser()) {
-            $token = $authTokenManager->createToken($this->getUser(), $client, $request->redirectUri);
+            $host = $request->redirectUri ?: $client->getHost();
 
-            return new RedirectResponse($urlGenerator->generateUrl($request->redirectUri ?: $client->getHost(), [
-                'code'  => $token->getToken(),
-                'state' => $request->state,
-            ]));
+            return new RedirectResponse($urlGenerator->generateUrl($host, $model->createView($request)->toArray()));
         }
 
         return $this->render('security/login.html.twig', [

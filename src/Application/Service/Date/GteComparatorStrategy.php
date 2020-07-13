@@ -4,7 +4,7 @@ namespace App\Application\Service\Date;
 
 use DateTime;
 
-class GteComparatorStrategy implements ComparatorStrategyInterface
+final class GteComparatorStrategy implements ComparatorStrategyInterface
 {
     public function compare(DateTime $dateTimeA, DateTime $dateTimeB): bool
     {

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace App\Application\Service;
+namespace App\Application\Service\Date;
 
 use App\Application\Service\Date\ComparatorStrategyInterface;
 use DateTime;

@@ -12,6 +12,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class AuthorizationRequest extends AbstractRequest
 {
+    public const RESPONSE_TYPE_CODE = 'code';
+    public const RESPONSE_TYPE_TOKEN = 'token';
+
     /**
      * @Assert\NotBlank()
      * @Assert\Regex(pattern="/^(code|token)$/")

@@ -5,7 +5,7 @@ namespace App\Application\Service\Cryptography;
 use Ahc\Jwt\JWT;
 use App\Domain\AccessToken\Contract\CryptographyInterface;
 
-class JWTCryptography implements CryptographyInterface
+final class JWTCryptography implements CryptographyInterface
 {
     private JWT $jwt;
 

@@ -22,8 +22,8 @@ class UserService
         $user = new User();
 
         $user
-            ->setUsername($registerUser->username)
-            ->setEmail($registerUser->email)
+            ->setUsername($registerUser->username ?? '')
+            ->setEmail($registerUser->email ?? '')
         ;
 
         $this->passwordUpdater->hashPassword($user);

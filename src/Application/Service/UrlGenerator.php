@@ -2,7 +2,7 @@
 
 namespace App\Application\Service;
 
-class UrlGenerator implements UrlGeneratorInterface
+final class UrlGenerator implements UrlGeneratorInterface
 {
     /**
      * {@inheritDoc}
