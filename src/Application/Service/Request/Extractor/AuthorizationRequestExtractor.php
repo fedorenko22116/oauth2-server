@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Service\Request\Extractor;
 
@@ -9,12 +11,12 @@ abstract class AuthorizationRequestExtractor implements RequestExtractorInterfac
     final public function has(Request $request): bool
     {
         return $request->headers->has('Authorization') &&
-            preg_match("/.*{$this->getType()}}\s(.*)$/", $request->headers->get('Authorization'));
+            preg_match("/.*{$this->getType()}}\s(.*)$/", $request->headers->get('Authorization') ?: '');
     }
 
     final public function get(Request $request): string
     {
-        return trim(preg_replace("/.*{$this->getType()}\s/", '', $request->headers->get('Authorization')));
+        return trim(preg_replace("/.*{$this->getType()}\s/", '', $request->headers->get('Authorization') ?: '') ?: '');
     }
 
     abstract protected function getType(): string;

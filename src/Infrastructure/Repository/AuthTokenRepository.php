@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Infrastructure\Repository;
 
@@ -7,7 +9,7 @@ use App\Domain\AuthToken\Entity\AuthToken;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<AuthToken>
+ * @extends PersistenceRepository<AuthToken>
  */
 final class AuthTokenRepository extends PersistenceRepository implements AuthTokenRepositoryInterface
 {
@@ -16,11 +18,6 @@ final class AuthTokenRepository extends PersistenceRepository implements AuthTok
         parent::__construct($registry, AuthToken::class);
     }
 
-    /**
-     * @param string $token
-     *
-     * @return AuthToken|object|null
-     */
     public function findOneByToken(string $token): ?AuthToken
     {
         return $this->findOneBy(['token' => $token]);

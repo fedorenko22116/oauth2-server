@@ -81,6 +81,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
+    "escapestudios/symfony2-coding-standard": {
+        "version": "3.11.0"
+    },
     "friendsofsymfony/rest-bundle": {
         "version": "2.2",
         "recipe": {
@@ -101,6 +104,9 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
+    },
+    "lsbproject/php-clean-code-rules": {
+        "version": "v1.0.1"
     },
     "lsbproject/request-bundle": {
         "version": "v1.3.1"
@@ -138,6 +144,9 @@
     "phpdocumentor/type-resolver": {
         "version": "1.0.1"
     },
+    "phpstan/phpdoc-parser": {
+        "version": "0.4.4"
+    },
     "phpstan/phpstan": {
         "version": "0.12.32"
     },
@@ -173,6 +182,18 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "slevomat/coding-standard": {
+        "version": "6.3.10"
+    },
+    "squizlabs/php_codesniffer": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
+        }
     },
     "symfony/cache": {
         "version": "v4.4.4"

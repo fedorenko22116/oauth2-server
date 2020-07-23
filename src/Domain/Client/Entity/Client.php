@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\Client\Entity;
 
@@ -10,41 +12,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Client
 {
-    /**
-     * @var string
-     */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $secret;
+    protected string $id;
+    protected string $secret;
 
     /**
      * @Assert\Url()
-     * @var string
      */
-    protected $host;
+    protected string $host;
 
     /**
      * @var string[]
      */
-    protected $grantTypes = [];
+    protected array $grantTypes = [];
 
     /**
      * @var Collection<Scope>
      */
-    protected $scopes;
+    protected Collection $scopes;
 
     /**
      * @var Collection<AuthToken>
      */
-    protected $authTokens;
-
-    /**
-     * @var User
-     */
-    protected $user;
+    protected Collection $authTokens;
+    protected User $user;
 
     public function getId(): string
     {
@@ -80,6 +70,9 @@ class Client
         return $this->host;
     }
 
+    /**
+     * @return array|string[]
+     */
     public function getGrantTypes(): array
     {
         return $this->grantTypes;
@@ -88,7 +81,7 @@ class Client
     /**
      * @return Collection<Scope>
      */
-    public function getScopes(): ?Collection
+    public function getScopes(): Collection
     {
         return $this->scopes;
     }
@@ -96,14 +89,11 @@ class Client
     /**
      * @return Collection<AuthToken>
      */
-    public function getAuthTokens(): ?Collection
+    public function getAuthTokens(): Collection
     {
         return $this->authTokens;
     }
 
-    /**
-     * @param string $host
-     */
     public function setHost(string $host): void
     {
         $this->host = $host;

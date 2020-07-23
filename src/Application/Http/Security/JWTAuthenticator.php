@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Http\Security;
 
@@ -30,10 +32,10 @@ class JWTAuthenticator extends AbstractGuardAuthenticator
         $this->bearerRequestExtractor = $bearerRequestExtractor;
     }
 
-    public function start(Request $request, AuthenticationException $authException = null): JsonResponse
+    public function start(Request $request, ?AuthenticationException $authException = null): JsonResponse
     {
         return new JsonResponse([
-            'message' => 'Authentication Required'
+            'message' => 'Authentication Required',
         ], Response::HTTP_UNAUTHORIZED);
     }
 
@@ -47,6 +49,9 @@ class JWTAuthenticator extends AbstractGuardAuthenticator
         return $this->bearerRequestExtractor->get($request);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getUser($credentials, UserProviderInterface $userProvider): ?UserInterface
     {
         $token = $this->tokenEncrypter->decode($credentials);
@@ -58,6 +63,9 @@ class JWTAuthenticator extends AbstractGuardAuthenticator
         return $this->userRepository->findOneByName($token->username);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function checkCredentials($credentials, UserInterface $user): bool
     {
         return (bool) $this->tokenEncrypter->decode($credentials);
@@ -66,11 +74,11 @@ class JWTAuthenticator extends AbstractGuardAuthenticator
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): JsonResponse
     {
         return new JsonResponse([
-            'message' => strtr($exception->getMessageKey(), $exception->getMessageData())
+            'message' => strtr($exception->getMessageKey(), $exception->getMessageData()),
         ], Response::HTTP_UNAUTHORIZED);
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?Response
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): ?Response
     {
         return null;
     }

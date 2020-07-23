@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Token;
 
@@ -11,9 +13,11 @@ use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use App\Domain\RefreshToken\RefreshTokenService;
 use LSBProject\RequestBundle\Request\AbstractRequest;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Webmozart\Assert\Assert;
 
-final class PasswordViewModel  implements ViewModelInterface
+final class PasswordViewModel implements ViewModelInterface
 {
     private PayloadFactoryInterface $payloadFactory;
     private AccessTokenService $tokenEncrypter;
@@ -33,20 +37,21 @@ final class PasswordViewModel  implements ViewModelInterface
     }
 
     /**
-     * @param PasswordRequest|AbstractRequest $request
-     *
-     * @return ViewInterface
+     * @param PasswordRequest $request
      */
     public function createView(AbstractRequest $request): ViewInterface
     {
         Assert::subclassOf($request, PasswordRequest::class);
 
+        /** @var TokenInterface $token */
         $token = $this->tokenStorage->getToken();
 
         Assert::notNull($token, 'User must be provided');
 
+        // TODO
+        /** @var UserInterface $user */
         $user = $token->getUser();
-        $payload = $this->payloadFactory->createDirect($user->getUsername(), $request->getScopes());
+        $payload = $this->payloadFactory->createDirect($request->username, $request->getScopes());
 
         return new TokenModel(
             $this->tokenEncrypter->encode($payload),

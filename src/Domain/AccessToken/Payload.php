@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\AccessToken;
 
@@ -10,7 +12,9 @@ class Payload
     /** @var array<string> */
     public array $scopes;
 
-    /** @var array<string> */
+    /**
+     * @param array<string> $scopes
+     */
     public function __construct(string $username, int $expires, array $scopes)
     {
         $this->username = $username;

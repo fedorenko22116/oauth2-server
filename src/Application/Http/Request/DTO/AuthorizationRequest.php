@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Http\Request\DTO;
 
@@ -17,6 +19,7 @@ class AuthorizationRequest extends AbstractRequest
 
     /**
      * @Assert\NotBlank()
+     *
      * @Assert\Regex(pattern="/^(code|token)$/")
      */
     public string $responseType;

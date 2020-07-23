@@ -1,29 +1,16 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\Scope\Entity;
 
 class Scope
 {
-    const INFO = 'info';
+    public const INFO = 'info';
 
-    /**
-     * @var int
-     */
-    protected $id = 0;
-
-    /**
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * @var string
-     */
-    protected $description;
-
-    /**
-     * @var bool
-     */
+    protected int $id = 0;
+    protected string $name;
+    protected string $description;
     protected bool $default;
 
     public function getName(): string

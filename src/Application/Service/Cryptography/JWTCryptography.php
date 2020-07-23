@@ -1,9 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Service\Cryptography;
 
 use Ahc\Jwt\JWT;
 use App\Domain\AccessToken\Contract\CryptographyInterface;
+use Webmozart\Assert\Assert;
 
 final class JWTCryptography implements CryptographyInterface
 {
@@ -11,7 +14,11 @@ final class JWTCryptography implements CryptographyInterface
 
     public function __construct(string $privateKeyPath)
     {
-        $this->jwt = new JWT(file_get_contents($privateKeyPath), 'RS256');
+        $secret = file_get_contents($privateKeyPath);
+
+        Assert::string($secret, 'Invalid secret provided');
+
+        $this->jwt = new JWT($secret ?: '', 'RS256');
     }
 
     /**

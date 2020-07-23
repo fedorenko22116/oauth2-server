@@ -1,11 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\AuthToken;
 
-use App\Domain\Shared\Contract\HashGeneratorInterface;
 use App\Domain\AuthToken\Contract\AuthTokenRepositoryInterface;
 use App\Domain\AuthToken\Entity\AuthToken;
 use App\Domain\Client\Entity\Client;
+use App\Domain\Shared\Contract\HashGeneratorInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthTokenService

@@ -1,10 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\User;
 
 use App\Domain\User\Contract\UserRepositoryInterface;
 use App\Domain\User\Entity\User;
 use App\Domain\User\Util\PasswordUpdaterInterface;
+use Throwable;
 
 class UserService
 {
@@ -32,9 +35,8 @@ class UserService
             $this->userRepository->save($user);
 
             return $user;
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return null;
         }
-
     }
 }

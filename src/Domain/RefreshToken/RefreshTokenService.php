@@ -1,12 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\RefreshToken;
 
+use App\Domain\RefreshToken\Contract\RefreshTokenRepositoryInterface;
+use App\Domain\RefreshToken\Entity\RefreshToken;
+use App\Domain\Scope\Contract\ScopeRepositoryInterface;
 use App\Domain\Shared\Contract\DateTimeInterface;
 use App\Domain\Shared\Contract\HashGeneratorInterface;
-use App\Domain\RefreshToken\Contract\RefreshTokenRepositoryInterface;
-use App\Domain\Scope\Contract\ScopeRepositoryInterface;
-use App\Domain\RefreshToken\Entity\RefreshToken;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -35,7 +37,7 @@ class RefreshTokenService
             $this->hashGenerator->generate(),
             $this->dateTime->getDate(),
             $user,
-            $scopes ?? $this->scopeRepository->findDefaults()
+            $scopes ?? $this->scopeRepository->findDefaults(),
         );
 
         $this->refreshTokenRepository->save($token);

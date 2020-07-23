@@ -1,8 +1,8 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Authorization\View;
-
 
 use App\Application\Constants;
 use App\Application\Service\ViewModel\ViewInterface;
@@ -20,13 +20,16 @@ final class TokenView implements ViewInterface
         $this->expires = $expires;
     }
 
+    /**
+     * @return array<string, string|int>
+     */
     public function toArray(): array
     {
         return [
-            'access_token'  => $this->token,
-            'state'         => $this->state,
-            'token_type'    => Constants::TOKEN_TYPE,
-            'expires'       => $this->expires,
+            'access_token' => $this->token,
+            'state' => $this->state,
+            'token_type' => Constants::TOKEN_TYPE,
+            'expires' => $this->expires,
         ];
     }
 }

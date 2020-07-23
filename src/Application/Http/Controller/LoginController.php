@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Http\Controller;
 
 use App\Application\Http\Request\DTO\AuthorizationRequest;
@@ -70,7 +72,7 @@ class LoginController extends AbstractFOSRestController
     public function logout(): Response
     {
         throw new Exception(
-            'This method can be blank - it will be intercepted by the logout key on your firewall'
+            'This method can be blank - it will be intercepted by the logout key on your firewall',
         );
     }
 }

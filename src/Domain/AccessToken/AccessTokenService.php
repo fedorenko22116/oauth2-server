@@ -1,9 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\AccessToken;
 
 use App\Domain\AccessToken\Contract\CryptographyInterface;
 use Symfony\Component\Serializer\SerializerInterface;
+use Throwable;
 
 class AccessTokenService
 {
@@ -28,11 +31,11 @@ class AccessTokenService
             $payload = $this->serializer->deserialize(
                 json_encode($this->cryptography->decode($token)),
                 Payload::class,
-                'json'
+                'json',
             );
 
             return $payload;
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             return null;
         }
     }

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\User\Entity;
 
@@ -6,7 +8,6 @@ use App\Domain\AuthToken\Entity\AuthToken;
 use App\Domain\Client\Entity\Client;
 use App\Domain\RefreshToken\Entity\RefreshToken;
 use Doctrine\Common\Collections\Collection;
-use EasyCorp\Bundle\EasyAdminBundle\Contracts\Collection\CollectionInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -38,20 +39,19 @@ class User implements UserInterface, EquatableInterface
     protected array $roles = [self::ROLE_USER];
 
     /**
-     * @var CollectionInterface<RefreshToken>|null
+     * @var Collection<RefreshToken>
      */
-    protected ?CollectionInterface $refreshTokens;
+    protected Collection $refreshTokens;
 
     /**
-     * @var CollectionInterface<AuthToken>|null
+     * @var Collection<AuthToken>
      */
-    protected ?CollectionInterface $authTokens;
+    protected Collection $authTokens;
 
     /**
-     * @var CollectionInterface<Client>|null
+     * @var Collection<Client>
      */
-    private ?CollectionInterface $clients;
-
+    private Collection $clients;
     private ?string $salt;
     private string $plainPassword = '';
 
@@ -132,16 +132,15 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @return CollectionInterface<RefreshToken>|null
+     * @return Collection<RefreshToken>
      */
-    public function getRefreshTokens(): ?CollectionInterface
+    public function getRefreshTokens(): Collection
     {
         return $this->refreshTokens;
     }
 
     /**
      * @param string[] $roles
-     * @return self
      */
     public function setRoles(array $roles): self
     {
@@ -151,10 +150,9 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @param CollectionInterface<RefreshToken> $refreshTokens
-     * @return self
+     * @param Collection<RefreshToken> $refreshTokens
      */
-    public function setRefreshTokens(CollectionInterface $refreshTokens): self
+    public function setRefreshTokens(Collection $refreshTokens): self
     {
         $this->refreshTokens = $refreshTokens;
 
@@ -162,10 +160,9 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @param CollectionInterface<AuthToken> $authTokens
-     * @return self
+     * @param Collection<AuthToken> $authTokens
      */
-    public function setAuthTokens(CollectionInterface $authTokens): self
+    public function setAuthTokens(Collection $authTokens): self
     {
         $this->authTokens = $authTokens;
 
@@ -173,17 +170,17 @@ class User implements UserInterface, EquatableInterface
     }
 
     /**
-     * @return CollectionInterface<AuthToken>|null
+     * @return Collection<AuthToken>
      */
-    public function getAuthTokens(): ?Collection
+    public function getAuthTokens(): Collection
     {
         return $this->authTokens;
     }
 
     /**
-     * @return CollectionInterface<Client>|null
+     * @return Collection<Client>
      */
-    public function getClients(): ?Collection
+    public function getClients(): Collection
     {
         return $this->clients;
     }

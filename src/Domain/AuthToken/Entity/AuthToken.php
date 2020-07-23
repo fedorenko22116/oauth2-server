@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\AuthToken\Entity;
 
@@ -7,30 +9,11 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class AuthToken
 {
-    /**
-     * @var int
-     */
-    private $id;
-
-    /**
-     * @var string
-     */
-    private $token;
-
-    /**
-     * @var string
-     */
-    private $redirectUri;
-
-    /**
-     * @var Client
-     */
-    private $client;
-
-    /**
-     * @var UserInterface
-     */
-    protected $user;
+    protected UserInterface $user;
+    private int $id;
+    private string $token;
+    private string $redirectUri;
+    private Client $client;
 
     public function __construct(string $token, Client $client, UserInterface $user, string $redirectUri)
     {

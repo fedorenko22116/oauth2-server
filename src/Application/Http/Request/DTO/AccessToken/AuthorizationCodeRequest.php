@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Http\Request\DTO\AccessToken;
 
@@ -17,6 +19,7 @@ class AuthorizationCodeRequest extends AbstractRequest
 {
     /**
      * @Assert\NotBlank()
+     *
      * @Assert\Regex(pattern="/^(authorization_code)$/")
      */
     public string $grantType;

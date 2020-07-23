@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Http\Request\DTO\AccessToken;
 
@@ -16,6 +18,7 @@ class ClientCredentialsRequest extends AbstractRequest
 {
     /**
      * @Assert\NotBlank()
+     *
      * @Assert\Regex(pattern="/^(client_credentials)$/")
      */
     public string $grantType;

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Token\View;
 
@@ -16,12 +18,15 @@ final class ClientCredentialsModel implements ViewInterface
         $this->expires = $expires;
     }
 
+    /**
+     * @return array<string, string|int>
+     */
     public function toArray(): array
     {
         return [
-            "access_token"  => $this->accessToken,
-            "token_type"    => Constants::TOKEN_TYPE,
-            "expires_in"    => $this->expires,
+            "access_token" => $this->accessToken,
+            "token_type" => Constants::TOKEN_TYPE,
+            "expires_in" => $this->expires,
         ];
     }
 }

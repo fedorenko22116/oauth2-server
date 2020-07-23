@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\User\Util;
 
@@ -30,8 +32,8 @@ class PasswordUpdater implements PasswordUpdaterInterface
             $user->setSalt(null);
         } else {
             $salt = rtrim(
-                str_replace('+', '.', base64_encode(openssl_random_pseudo_bytes(32))),
-                '='
+                str_replace('+', '.', base64_encode(openssl_random_pseudo_bytes(32) ?: '')),
+                '=',
             );
             $user->setSalt($salt);
         }

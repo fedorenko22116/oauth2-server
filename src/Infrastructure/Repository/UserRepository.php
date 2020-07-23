@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Infrastructure\Repository;
 
@@ -7,7 +9,7 @@ use App\Domain\User\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<User>
+ * @extends PersistenceRepository<User>
  */
 final class UserRepository extends PersistenceRepository implements UserRepositoryInterface
 {
@@ -16,10 +18,6 @@ final class UserRepository extends PersistenceRepository implements UserReposito
         parent::__construct($registry, User::class);
     }
 
-    /**
-     * @param string $username
-     * @return User|null|object
-     */
     public function findOneByName(string $username): ?User
     {
         return $this->findOneBy([

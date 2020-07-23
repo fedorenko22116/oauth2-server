@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Http\Request\ParamConverter;
 
@@ -35,6 +37,6 @@ class ClientConverter implements ParamConverterInterface
 
     public function supports(ParamConverter $configuration): bool
     {
-        return $configuration->getClass() === Client::class;
+        return Client::class === $configuration->getClass();
     }
 }

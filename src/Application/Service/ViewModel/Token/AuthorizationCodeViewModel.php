@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Token;
 
@@ -29,9 +31,7 @@ final class AuthorizationCodeViewModel implements ViewModelInterface
     }
 
     /**
-     * @param AuthorizationCodeRequest|AbstractRequest $request
-     *
-     * @return ViewInterface
+     * @param AuthorizationCodeRequest $request
      */
     public function createView(AbstractRequest $request): ViewInterface
     {

@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Service\Hash;
 
@@ -8,6 +10,6 @@ class Base64HashGenerator implements HashGeneratorInterface
 {
     public function generate(): string
     {
-        return base64_encode(openssl_random_pseudo_bytes(256));
+        return base64_encode(openssl_random_pseudo_bytes(256) ?: '');
     }
 }

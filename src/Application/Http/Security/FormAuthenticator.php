@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Application\Http\Security;
 
 use App\Domain\User\Entity\User;
@@ -42,12 +44,17 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         $this->passwordEncoder = $passwordEncoder;
     }
 
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
         return 'app_login' === $request->attributes->get('_route') && $request->isMethod('POST');
     }
 
-    public function getCredentials(Request $request)
+    /**
+     * {@inheritDoc}
+     *
+     * @return array<string, string>
+     */
+    public function getCredentials(Request $request): array
     {
         $credentials = [
             'username' => $request->request->get('username'),
@@ -60,6 +67,9 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return $credentials;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function getUser($credentials, UserProviderInterface $userProvider): UserInterface
     {
         $token = new CsrfToken('authenticate', $credentials['csrf_token']);
@@ -79,12 +89,17 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return $user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function checkCredentials($credentials, UserInterface $user): bool
     {
         return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Used to upgrade (rehash) the user's password automatically over time.
      */
     public function getPassword($credentials): ?string
@@ -92,7 +107,7 @@ class FormAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return $credentials['password'];
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey): ?Response
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);

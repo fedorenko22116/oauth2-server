@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Application\Http\Response;
 
@@ -30,7 +32,7 @@ class ErrorResponse extends JsonResponse
                condition that prevented it from fulfilling the request.',
         self::TEMPORARILY_UNAVAILABLE => 'The authorization server is currently unable to handle
                the request due to a temporary overloading or maintenance
-               of the server.'
+               of the server.',
     ];
 
     private const CODES = [

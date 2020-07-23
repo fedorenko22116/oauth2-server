@@ -8,3 +8,5 @@ parameters:
     bootstrap: config/bootstrap.php
     paths:
         - src
+
+    checkGenericClassInNonGenericObjectType: false

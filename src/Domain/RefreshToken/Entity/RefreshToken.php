@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\RefreshToken\Entity;
 
@@ -9,30 +11,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class RefreshToken
 {
-    /**
-     * @var int
-     */
-    protected $id;
-
-    /**
-     * @var string
-     */
-    protected $token;
-
-    /**
-     * @var DateTime
-     */
-    protected $expires;
-
-    /**
-     * @var UserInterface
-     */
-    protected $user;
+    protected int $id;
+    protected string $token;
+    protected DateTime $expires;
+    protected UserInterface $user;
 
     /**
      * @var Collection<Scope>
      */
-    protected $scopes;
+    protected Collection $scopes;
 
     /**
      * @param Collection<Scope> $scopes

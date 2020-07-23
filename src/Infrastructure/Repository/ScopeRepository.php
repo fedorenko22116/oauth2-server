@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Infrastructure\Repository;
 
@@ -8,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Scope>
+ * @extends PersistenceRepository<Scope>
  */
 final class ScopeRepository extends PersistenceRepository implements ScopeRepositoryInterface
 {

@@ -1,10 +1,12 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace App\Domain\AccessToken\Factory;
 
+use App\Domain\AccessToken\Payload;
 use App\Domain\AuthToken\Entity\AuthToken;
 use App\Domain\Scope\Entity\Scope;
-use App\Domain\AccessToken\Payload;
 use DateTime;
 use Doctrine\Common\Collections\Collection;
 
