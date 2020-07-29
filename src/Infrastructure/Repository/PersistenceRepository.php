@@ -9,7 +9,6 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @template T
- *
  * @extends ServiceEntityRepository<T>
  */
 abstract class PersistenceRepository extends ServiceEntityRepository implements PersistenceRepositoryInterface

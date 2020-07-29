@@ -19,7 +19,6 @@ class AuthorizationRequest extends AbstractRequest
 
     /**
      * @Assert\NotBlank()
-     *
      * @Assert\Regex(pattern="/^(code|token)$/")
      */
     public string $responseType;

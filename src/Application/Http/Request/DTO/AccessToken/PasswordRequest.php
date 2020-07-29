@@ -18,7 +18,6 @@ class PasswordRequest extends AbstractRequest
 {
     /**
      * @Assert\NotBlank()
-     *
      * @Assert\Regex(pattern="/^(password)$/")
      */
     public string $grantType;

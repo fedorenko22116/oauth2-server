@@ -19,7 +19,6 @@ class AuthorizationCodeRequest extends AbstractRequest
 {
     /**
      * @Assert\NotBlank()
-     *
      * @Assert\Regex(pattern="/^(authorization_code)$/")
      */
     public string $grantType;

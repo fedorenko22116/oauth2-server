@@ -6734,16 +6734,16 @@
         },
         {
             "name": "lsbproject/php-clean-code-rules",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/22116/php-clean-code-rules.git",
-                "reference": "e7e46488caf991f19601eb44e6ac3697aead15b8"
+                "reference": "ea5aaf54b7f8f3f4dd2a12d1dbe413c9c94b1c23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/22116/php-clean-code-rules/zipball/e7e46488caf991f19601eb44e6ac3697aead15b8",
-                "reference": "e7e46488caf991f19601eb44e6ac3697aead15b8",
+                "url": "https://api.github.com/repos/22116/php-clean-code-rules/zipball/ea5aaf54b7f8f3f4dd2a12d1dbe413c9c94b1c23",
+                "reference": "ea5aaf54b7f8f3f4dd2a12d1dbe413c9c94b1c23",
                 "shasum": ""
             },
             "require": {
@@ -6765,7 +6765,7 @@
                 }
             ],
             "description": "This repository contains the most respectful (by the author meaning) rules for linters and static code analysers",
-            "time": "2020-07-23T21:13:13+00:00"
+            "time": "2020-07-29T21:22:29+00:00"
         },
         {
             "name": "nikic/php-parser",

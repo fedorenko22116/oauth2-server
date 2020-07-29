@@ -9,6 +9,5 @@ use Symfony\Component\HttpFoundation\Request;
 interface RequestExtractorInterface
 {
     public function has(Request $request): bool;
-
     public function get(Request $request): string;
 }

@@ -18,7 +18,6 @@ class ClientCredentialsRequest extends AbstractRequest
 {
     /**
      * @Assert\NotBlank()
-     *
      * @Assert\Regex(pattern="/^(client_credentials)$/")
      */
     public string $grantType;
