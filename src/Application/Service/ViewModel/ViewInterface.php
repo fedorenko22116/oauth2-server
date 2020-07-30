@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel;
 
-interface ViewInterface
+use JsonSerializable;
+
+interface ViewInterface extends JsonSerializable
 {
-    /**
-     * @return mixed[]
-     */
-    public function toArray(): array;
 }

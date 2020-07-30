@@ -7,17 +7,15 @@ namespace App\Application\Service\ViewModel\Token;
 use App\Application\Http\Request\DTO\AccessToken\PasswordRequest;
 use App\Application\Service\ViewModel\Token\View\TokenModel;
 use App\Application\Service\ViewModel\ViewInterface;
-use App\Application\Service\ViewModel\ViewModelInterface;
 use App\Domain\AccessToken\AccessTokenService;
 use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use App\Domain\RefreshToken\RefreshTokenService;
-use LSBProject\RequestBundle\Request\AbstractRequest;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Webmozart\Assert\Assert;
 
-final class PasswordViewModel implements ViewModelInterface
+final class PasswordViewModel
 {
     private PayloadFactoryInterface $payloadFactory;
     private AccessTokenService $tokenEncrypter;
@@ -36,13 +34,8 @@ final class PasswordViewModel implements ViewModelInterface
         $this->tokenStorage = $tokenStorage;
     }
 
-    /**
-     * @param PasswordRequest $request
-     */
-    public function createView(AbstractRequest $request): ViewInterface
+    public function createView(PasswordRequest $request): ViewInterface
     {
-        Assert::subclassOf($request, PasswordRequest::class);
-
         /** @var TokenInterface $token */
         $token = $this->tokenStorage->getToken();
 

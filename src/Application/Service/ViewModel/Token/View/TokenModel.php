@@ -23,7 +23,7 @@ final class TokenModel implements ViewInterface
     /**
      * @return array<string, string|int>
      */
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
         return [
             "access_token" => $this->accessToken,

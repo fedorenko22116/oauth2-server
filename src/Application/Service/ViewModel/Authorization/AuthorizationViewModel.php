@@ -8,19 +8,17 @@ use App\Application\Http\Request\DTO\AuthorizationRequest;
 use App\Application\Service\ViewModel\Authorization\View\CodeView;
 use App\Application\Service\ViewModel\Authorization\View\TokenView;
 use App\Application\Service\ViewModel\ViewInterface;
-use App\Application\Service\ViewModel\ViewModelInterface;
 use App\Domain\AccessToken\AccessTokenService;
 use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use App\Domain\AuthToken\AuthTokenService;
 use App\Domain\Scope\Entity\Scope;
-use LSBProject\RequestBundle\Request\AbstractRequest;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Webmozart\Assert\Assert;
 
-final class AuthorizationViewModel implements ViewModelInterface
+final class AuthorizationViewModel
 {
     private AuthTokenService $authTokenService;
     private PayloadFactoryInterface $payloadFactory;
@@ -39,13 +37,8 @@ final class AuthorizationViewModel implements ViewModelInterface
         $this->tokenStorage = $tokenStorage;
     }
 
-    /**
-     * @param AuthorizationRequest $request
-     */
-    public function createView(AbstractRequest $request): ViewInterface
+    public function createView(AuthorizationRequest $request): ViewInterface
     {
-        Assert::subclassOf($request, AuthorizationRequest::class);
-
         /** @var TokenInterface $token */
         $token = $this->tokenStorage->getToken();
 

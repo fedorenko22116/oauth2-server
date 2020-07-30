@@ -7,14 +7,11 @@ namespace App\Application\Service\ViewModel\Token;
 use App\Application\Http\Request\DTO\AccessToken\AuthorizationCodeRequest;
 use App\Application\Service\ViewModel\Token\View\TokenModel;
 use App\Application\Service\ViewModel\ViewInterface;
-use App\Application\Service\ViewModel\ViewModelInterface;
 use App\Domain\AccessToken\AccessTokenService;
 use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use App\Domain\RefreshToken\RefreshTokenService;
-use LSBProject\RequestBundle\Request\AbstractRequest;
-use Webmozart\Assert\Assert;
 
-final class AuthorizationCodeViewModel implements ViewModelInterface
+final class AuthorizationCodeViewModel
 {
     private PayloadFactoryInterface $payloadFactory;
     private AccessTokenService $accessTokenService;
@@ -30,13 +27,8 @@ final class AuthorizationCodeViewModel implements ViewModelInterface
         $this->refreshTokenManager = $refreshTokenManager;
     }
 
-    /**
-     * @param AuthorizationCodeRequest $request
-     */
-    public function createView(AbstractRequest $request): ViewInterface
+    public function createView(AuthorizationCodeRequest $request): ViewInterface
     {
-        Assert::subclassOf($request, AuthorizationCodeRequest::class);
-
         $payload = $this->payloadFactory->create($request->token);
 
         return new TokenModel(

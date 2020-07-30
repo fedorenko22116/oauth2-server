@@ -20,7 +20,7 @@ final class CodeView implements ViewInterface
     /**
      * @return array<string, string>
      */
-    public function toArray(): array
+    public function jsonSerialize(): array
     {
         return [
             'code' => $this->code,
