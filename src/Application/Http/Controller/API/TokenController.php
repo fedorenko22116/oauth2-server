@@ -37,7 +37,7 @@ class TokenController extends AbstractFOSRestController
             return new ErrorResponse(ErrorResponse::UNAUTHORIZED_CLIENT);
         }
 
-        return new JsonResponse($viewModel->createView($request)->toArray(), 201);
+        return new JsonResponse($viewModel->createView($request), 201);
     }
 
     /**
@@ -53,7 +53,7 @@ class TokenController extends AbstractFOSRestController
     ): JsonResponse {
         Assert::object($client);
 
-        return new JsonResponse($viewModel->createView($request)->toArray(), 201);
+        return new JsonResponse($viewModel->createView($request), 201);
     }
 
     /**
@@ -66,6 +66,6 @@ class TokenController extends AbstractFOSRestController
     {
         Assert::object($client);
 
-        return new JsonResponse($viewModel->createView($request)->toArray(), 201);
+        return new JsonResponse($viewModel->createView($request), 201);
     }
 }

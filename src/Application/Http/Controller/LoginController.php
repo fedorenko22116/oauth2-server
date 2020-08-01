@@ -34,7 +34,9 @@ class LoginController extends AbstractFOSRestController
         if ($this->getUser()) {
             $host = $request->redirectUri ?: $client->getHost();
 
-            return new RedirectResponse($urlGenerator->generateUrl($host, $model->createView($request)->toArray()));
+            return new RedirectResponse(
+                $urlGenerator->generateUrl($host, $model->createView($request)->jsonSerialize())
+            );
         }
 
         return $this->render('security/login.html.twig', [
