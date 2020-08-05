@@ -8,29 +8,14 @@ use App\Domain\AuthToken\Entity\AuthToken;
 use App\Domain\Client\Entity\Client;
 use App\Domain\RefreshToken\Entity\RefreshToken;
 use Doctrine\Common\Collections\Collection;
-use Symfony\Component\Security\Core\User\EquatableInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
 
-class User implements UserInterface, EquatableInterface
+class User
 {
     public const ROLE_USER = 'ROLE_USER';
 
     protected int $id = 0;
-
-    /**
-     * @Assert\Length(min="4")
-     */
     protected string $username = '';
-
-    /**
-     * @Assert\Length(min="6")
-     */
     protected string $password = '';
-
-    /**
-     * @Assert\Email()
-     */
     protected string $email = '';
 
     /**
@@ -55,6 +40,18 @@ class User implements UserInterface, EquatableInterface
     private ?string $salt;
     private string $plainPassword = '';
 
+    public function setSalt(?string $salt): self
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        return $this->salt;
+    }
+
     public function getId(): int
     {
         return $this->id;
@@ -71,18 +68,6 @@ class User implements UserInterface, EquatableInterface
     public function getPassword(): string
     {
         return $this->password;
-    }
-
-    public function setSalt(?string $salt): self
-    {
-        $this->salt = $salt;
-
-        return $this;
-    }
-
-    public function getSalt(): ?string
-    {
-        return $this->salt;
     }
 
     public function getUsername(): string
@@ -109,16 +94,6 @@ class User implements UserInterface, EquatableInterface
         return $this;
     }
 
-    public function eraseCredentials(): self
-    {
-        return $this;
-    }
-
-    public function isEqualTo(UserInterface $user): bool
-    {
-        return $user->getUsername() === $this->getUsername();
-    }
-
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -129,6 +104,11 @@ class User implements UserInterface, EquatableInterface
     public function getPlainPassword(): string
     {
         return $this->plainPassword;
+    }
+
+    public function eraseCredentials(): self
+    {
+        return $this;
     }
 
     /**

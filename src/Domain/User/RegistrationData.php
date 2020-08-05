@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
-class RegisterUserDTO
+class RegistrationData
 {
     public ?string $username;
     public ?string $password;

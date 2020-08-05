@@ -8,7 +8,7 @@ use App\Application\Http\Request\DTO\AuthorizationRequest;
 use App\Application\Http\Request\Form\Type\RegisterType;
 use App\Application\Service\UrlGeneratorInterface;
 use App\Application\Service\ViewModel\Authorization\AuthorizationViewModel;
-use App\Domain\User\RegisterUserDTO;
+use App\Domain\User\RegistrationData;
 use App\Domain\User\UserService;
 use Exception;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
@@ -35,7 +35,7 @@ class LoginController extends AbstractFOSRestController
             $host = $request->redirectUri ?: $client->getHost();
 
             return new RedirectResponse(
-                $urlGenerator->generateUrl($host, $model->createView($request)->jsonSerialize())
+                $urlGenerator->generateUrl($host, $model->createView($request)->jsonSerialize()),
             );
         }
 
@@ -52,7 +52,7 @@ class LoginController extends AbstractFOSRestController
      */
     public function register(Request $request, UserService $userManager): Response
     {
-        $registerUser = new RegisterUserDTO();
+        $registerUser = new RegistrationData();
         $form = $this->createForm(RegisterType::class, $registerUser);
         $form->handleRequest($request);
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Repository;
 
+use App\Application\Entity\User;
 use App\Domain\User\Contract\UserRepositoryInterface;
-use App\Domain\User\Entity\User;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**

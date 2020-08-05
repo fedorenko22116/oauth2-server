@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Domain\User;
 
+use App\Domain\User\Contract\PasswordUpdaterInterface;
 use App\Domain\User\Contract\UserRepositoryInterface;
 use App\Domain\User\Entity\User;
-use App\Domain\User\Util\PasswordUpdaterInterface;
 use Throwable;
 
 class UserService
@@ -20,7 +20,7 @@ class UserService
         $this->passwordUpdater = $passwordUpdater;
     }
 
-    public function createUser(RegisterUserDTO $registerUser): ?User
+    public function createUser(RegistrationData $registerUser): ?User
     {
         $user = new User();
 

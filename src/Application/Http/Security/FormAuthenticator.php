@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Security;
 
-use App\Domain\User\Entity\User;
+use App\Application\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;

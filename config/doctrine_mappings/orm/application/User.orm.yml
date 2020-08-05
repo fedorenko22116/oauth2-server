@@ -1,4 +1,4 @@
-App\Domain\User\Entity\User:
+App\Application\Entity\User:
     type: entity
     table: users
     repositoryClass: App\Infrastructure\Repository\UserRepository

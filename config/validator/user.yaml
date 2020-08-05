@@ -1,0 +1,10 @@
+App\Domain\User\Entity\User:
+    properties:
+        username:
+            - Length:
+                min: 4
+        password:
+            - Length:
+                min: 4
+        email:
+            - Email

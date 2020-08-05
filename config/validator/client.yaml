@@ -1,0 +1,4 @@
+App\Domain\Client\Entity\Client:
+    properties:
+        host:
+            - Url

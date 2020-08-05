@@ -2,10 +2,10 @@ security:
     providers:
         database_provider:
             entity:
-                class: App\Domain\Entity\User
+                class: App\Application\Entity\User
 
     encoders:
-        App\Domain\Entity\User: bcrypt
+        App\Application\Entity\User: bcrypt
 
     firewalls:
         dev:

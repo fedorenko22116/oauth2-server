@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\User\Util;
+namespace App\Application\Service\Hash;
 
+use App\Domain\User\Contract\PasswordUpdaterInterface;
 use App\Domain\User\Entity\User;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\NativePasswordEncoder;
@@ -26,7 +27,7 @@ class PasswordUpdater implements PasswordUpdaterInterface
             return;
         }
 
-        $encoder = $this->encoderFactory->getEncoder($user);
+        $encoder = $this->encoderFactory->getEncoder($user->getUsername());
 
         if ($encoder instanceof NativePasswordEncoder || $encoder instanceof SelfSaltingEncoderInterface) {
             $user->setSalt(null);
