@@ -1,25 +1,5 @@
 App\Application\Entity\User:
     type: entity
-    table: users
-    repositoryClass: App\Infrastructure\Repository\UserRepository
-
-    id:
-        id:
-            type: integer
-            generator: { strategy: AUTO }
-
-    fields:
-        username:
-            type: string
-            length: 100
-            unique: true
-        email:
-            type: string
-            unique: true
-        password:
-            type: string
-        roles:
-            type: array
 
     oneToMany:
         refreshTokens:

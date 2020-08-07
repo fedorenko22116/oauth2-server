@@ -15,10 +15,8 @@ doctrine:
                 type: yml
                 dir: '%kernel.project_dir%/config/doctrine_mappings/orm/domain'
                 prefix: 'App\Domain'
-                alias: App
             Application:
                 is_bundle: false
                 type: yml
                 dir: '%kernel.project_dir%/config/doctrine_mappings/orm/application'
                 prefix: 'App\Application\Entity'
-                alias: App

@@ -24,7 +24,7 @@ App\Domain\Client\Entity\Client:
 
     manyToOne:
         user:
-            targetEntity: App\Domain\User\Entity\User
+            targetEntity: App\Application\Entity\User
             inversedBy: clients
 
     manyToMany:

@@ -17,7 +17,7 @@ App\Domain\RefreshToken\Entity\RefreshToken:
 
     manyToOne:
         user:
-            targetEntity: App\Domain\User\Entity\User
+            targetEntity: App\Application\Entity\User
             inversedBy: refreshTokens
 
     manyToMany:
