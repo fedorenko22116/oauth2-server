@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\Collection;
 class User
 {
     public const ROLE_USER = 'ROLE_USER';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
 
     protected int $id = 0;
     protected string $username = '';
@@ -97,6 +98,13 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }

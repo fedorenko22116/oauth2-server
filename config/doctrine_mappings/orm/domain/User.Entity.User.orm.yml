@@ -1,7 +1,6 @@
 App\Domain\User\Entity\User:
     type: mappedSuperclass
     table: users
-    repositoryClass: App\Infrastructure\Repository\UserRepository
 
     id:
         id:

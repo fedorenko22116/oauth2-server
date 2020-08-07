@@ -7,7 +7,6 @@ namespace App\Domain\User;
 use App\Domain\User\Contract\PasswordUpdaterInterface;
 use App\Domain\User\Contract\UserRepositoryInterface;
 use App\Domain\User\Entity\User;
-use Throwable;
 
 class UserService
 {
@@ -20,23 +19,20 @@ class UserService
         $this->passwordUpdater = $passwordUpdater;
     }
 
-    public function createUser(RegistrationData $registerUser): ?User
+    public function createUser(RegistrationData $registerUser): User
     {
         $user = new User();
 
         $user
             ->setUsername($registerUser->username ?? '')
             ->setEmail($registerUser->email ?? '')
+            ->setPlainPassword($registerUser->password ?? '')
+            ->setRoles($registerUser->roles ?? [])
         ;
 
         $this->passwordUpdater->hashPassword($user);
+        $this->userRepository->save($user);
 
-        try {
-            $this->userRepository->save($user);
-
-            return $user;
-        } catch (Throwable $exception) {
-            return null;
-        }
+        return $user;
     }
 }

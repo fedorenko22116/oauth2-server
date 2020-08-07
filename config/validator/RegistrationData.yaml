@@ -1,4 +1,4 @@
-App\Application\Entity\User:
+App\Domain\User\RegistrationData:
     properties:
         username:
             - Length:
@@ -7,4 +7,4 @@ App\Application\Entity\User:
             - Length:
                 min: 4
         email:
-            - Email
+            - Email:

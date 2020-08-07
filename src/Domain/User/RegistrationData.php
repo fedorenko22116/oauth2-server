@@ -9,4 +9,9 @@ class RegistrationData
     public ?string $username;
     public ?string $password;
     public ?string $email;
+
+    /**
+     * @var string[]|null
+     */
+    public ?array $roles;
 }

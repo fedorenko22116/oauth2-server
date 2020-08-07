@@ -27,7 +27,7 @@ final class PasswordUpdater implements PasswordUpdaterInterface
             return;
         }
 
-        $encoder = $this->encoderFactory->getEncoder($user->getUsername());
+        $encoder = $this->encoderFactory->getEncoder(\App\Application\Entity\User::class);
 
         if ($encoder instanceof NativePasswordEncoder || $encoder instanceof SelfSaltingEncoderInterface) {
             $user->setSalt(null);
