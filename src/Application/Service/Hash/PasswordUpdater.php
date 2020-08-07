@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Encoder\NativePasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\SelfSaltingEncoderInterface;
 
-class PasswordUpdater implements PasswordUpdaterInterface
+final class PasswordUpdater implements PasswordUpdaterInterface
 {
     private EncoderFactoryInterface $encoderFactory;
 

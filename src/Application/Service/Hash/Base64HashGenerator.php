@@ -6,7 +6,7 @@ namespace App\Application\Service\Hash;
 
 use App\Domain\Shared\Contract\HashGeneratorInterface;
 
-class Base64HashGenerator implements HashGeneratorInterface
+final class Base64HashGenerator implements HashGeneratorInterface
 {
     public function generate(): string
     {

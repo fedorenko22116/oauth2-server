@@ -10,7 +10,7 @@ use App\Application\Service\ViewModel\ViewInterface;
 use App\Domain\AccessToken\AccessTokenService;
 use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use App\Domain\RefreshToken\RefreshTokenService;
-use App\Infrastructure\Repository\UserRepository;
+use App\Domain\User\Contract\UserRepositoryInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Webmozart\Assert\Assert;
@@ -18,20 +18,20 @@ use Webmozart\Assert\Assert;
 final class PasswordViewModel
 {
     private PayloadFactoryInterface $payloadFactory;
-    private AccessTokenService $tokenEncrypter;
+    private AccessTokenService $accessTokenService;
     private RefreshTokenService $refreshTokenManager;
     private UserPasswordEncoderInterface $userPasswordEncoder;
-    private UserRepository $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     public function __construct(
         PayloadFactoryInterface $payloadFactory,
-        AccessTokenService $tokenEncrypter,
+        AccessTokenService $accessTokenService,
         RefreshTokenService $refreshTokenManager,
         UserPasswordEncoderInterface $userPasswordEncoder,
-        UserRepository $userRepository
+        UserRepositoryInterface $userRepository
     ) {
         $this->payloadFactory = $payloadFactory;
-        $this->tokenEncrypter = $tokenEncrypter;
+        $this->accessTokenService = $accessTokenService;
         $this->refreshTokenManager = $refreshTokenManager;
         $this->userPasswordEncoder = $userPasswordEncoder;
         $this->userRepository = $userRepository;
@@ -51,7 +51,7 @@ final class PasswordViewModel
         $payload = $this->payloadFactory->createDirect($user->getUsername(), $request->getScopes());
 
         return new TokenModel(
-            $this->tokenEncrypter->encode($payload),
+            $this->accessTokenService->encode($payload),
             $payload->expires,
             $this->refreshTokenManager->createToken($user)->getToken(),
         );
