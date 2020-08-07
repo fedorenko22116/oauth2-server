@@ -36,9 +36,9 @@ class User
     /**
      * @var Collection<Client>
      */
-    private Collection $clients;
-    private ?string $salt;
-    private string $plainPassword = '';
+    protected Collection $clients;
+    protected ?string $salt;
+    protected string $plainPassword = '';
 
     public function setSalt(?string $salt): self
     {
