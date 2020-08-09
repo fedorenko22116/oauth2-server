@@ -10,4 +10,5 @@ use App\Domain\User\Entity\User;
 interface UserRepositoryInterface extends PersistenceRepositoryInterface
 {
     public function findOneByName(string $username): ?User;
+    public function findOneByNameOrEmail(string $username): ?User;
 }

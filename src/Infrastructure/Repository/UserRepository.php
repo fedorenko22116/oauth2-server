@@ -24,4 +24,19 @@ final class UserRepository extends PersistenceRepository implements UserReposito
             'username' => $username,
         ]);
     }
+
+    public function findOneByNameOrEmail(string $username): ?User
+    {
+        $qb = $this->createQueryBuilder('u');
+
+        return $qb
+            ->where($qb->expr()->orX(
+                $qb->expr()->eq('u.username', ':username'),
+                $qb->expr()->eq('u.email', ':username'),
+            ))
+            ->setParameter('username', $username)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
 }
