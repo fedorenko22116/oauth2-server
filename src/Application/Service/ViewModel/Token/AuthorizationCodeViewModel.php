@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Token;
 
+use App\Application\Entity\User;
 use App\Application\Http\Request\DTO\AccessToken\AuthorizationCodeRequest;
 use App\Application\Service\ViewModel\Token\View\TokenModel;
 use App\Application\Service\ViewModel\ViewInterface;
@@ -29,12 +30,14 @@ final class AuthorizationCodeViewModel
 
     public function createView(AuthorizationCodeRequest $request): ViewInterface
     {
+        /** @var User $user */
+        $user = $request->token->getUser();
         $payload = $this->payloadFactory->create($request->token);
 
         return new TokenModel(
             $this->accessTokenService->encode($payload),
             $payload->expires,
-            $this->refreshTokenManager->createToken($request->token->getUser())->getToken(),
+            $this->refreshTokenManager->createToken($user)->getToken(),
         );
     }
 }

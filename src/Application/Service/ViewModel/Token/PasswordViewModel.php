@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Token;
 
+use App\Application\Entity\User;
 use App\Application\Http\Request\DTO\AccessToken\PasswordRequest;
 use App\Application\Service\ViewModel\Token\View\TokenModel;
 use App\Application\Service\ViewModel\ViewInterface;
@@ -12,7 +13,6 @@ use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use App\Domain\RefreshToken\RefreshTokenService;
 use App\Domain\User\Contract\UserRepositoryInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Webmozart\Assert\Assert;
 
 final class PasswordViewModel
@@ -39,7 +39,7 @@ final class PasswordViewModel
 
     public function createView(PasswordRequest $request): ViewInterface
     {
-        /** @var UserInterface $user */
+        /** @var User $user */
         $user = $this->userRepository->findOneByName($request->username);
 
         Assert::notNull($user, 'User not found');

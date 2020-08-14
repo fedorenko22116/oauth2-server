@@ -9,8 +9,8 @@ use App\Domain\RefreshToken\Entity\RefreshToken;
 use App\Domain\Scope\Contract\ScopeRepositoryInterface;
 use App\Domain\Shared\Contract\DateTimeInterface;
 use App\Domain\Shared\Contract\HashGeneratorInterface;
+use App\Domain\User\Entity\User;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class RefreshTokenService
 {
@@ -31,7 +31,7 @@ class RefreshTokenService
         $this->refreshTokenRepository = $refreshTokenRepository;
     }
 
-    public function createToken(UserInterface $user, ?ArrayCollection $scopes = null): RefreshToken
+    public function createToken(User $user, ?ArrayCollection $scopes = null): RefreshToken
     {
         $token = new RefreshToken(
             $this->hashGenerator->generate(),

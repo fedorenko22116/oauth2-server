@@ -10,7 +10,6 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class DeleteUserCommand extends Command
 {
@@ -18,14 +17,12 @@ class DeleteUserCommand extends Command
 
     private SymfonyStyle $io;
     private UserRepositoryInterface $userRepository;
-    private ValidatorInterface $validator;
 
-    public function __construct(UserRepositoryInterface $userRepository, ValidatorInterface $validator)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         parent::__construct();
 
         $this->userRepository = $userRepository;
-        $this->validator = $validator;
     }
 
     public function configure(): void
