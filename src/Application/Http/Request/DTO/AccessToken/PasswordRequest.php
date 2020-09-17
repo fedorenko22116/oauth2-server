@@ -16,9 +16,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class PasswordRequest extends AbstractRequest
 {
+    const GRANT_TYPE = 'password';
+
     /**
-     * @Assert\NotBlank()
-     * @Assert\Regex(pattern="/^(password)$/")
+     * @Assert\EqualTo(self::GRANT_TYPE)
      */
     public string $grantType;
 

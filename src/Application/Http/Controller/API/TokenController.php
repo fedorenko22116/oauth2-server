@@ -25,7 +25,7 @@ class TokenController extends AbstractFOSRestController
     /**
      * @Rest\Post(
      *     name="token_authorization_code",
-     *     condition="context.getParameter('grant_type') == 'authorization_code'"
+     *     condition="context.getParameter('grant_type') == AuthorizationCodeRequest::GRANT_TYPE"
      * )
      */
     public function tokenAuthorizationCode(
@@ -43,7 +43,7 @@ class TokenController extends AbstractFOSRestController
     /**
      * @Rest\Post(
      *     name="token_client_credentials",
-     *     condition="context.getParameter('grant_type') == 'client_credentials'"
+     *     condition="context.getParameter('grant_type') == ClientCredentialsRequest::GRANT_TYPE"
      * )
      */
     public function tokenClientCredentials(
@@ -59,7 +59,7 @@ class TokenController extends AbstractFOSRestController
     /**
      * @Rest\Post(
      *     name="token_password",
-     *     condition="context.getParameter('grant_type') == 'password'"
+     *     condition="context.getParameter('grant_type') == PasswordRequest::GRANT_TYPE"
      * )
      */
     public function tokenPassword(PasswordRequest $request, PasswordViewModel $viewModel, Client $client): JsonResponse

@@ -17,9 +17,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class AuthorizationCodeRequest extends AbstractRequest
 {
+    const GRANT_TYPE = 'authorization_code';
+
     /**
-     * @Assert\NotBlank()
-     * @Assert\Regex(pattern="/^(authorization_code)$/")
+     * @Assert\EqualTo(self::GRANT_TYPE)
      */
     public string $grantType;
 

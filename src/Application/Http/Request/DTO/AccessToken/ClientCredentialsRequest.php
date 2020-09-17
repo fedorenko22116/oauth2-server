@@ -16,9 +16,10 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class ClientCredentialsRequest extends AbstractRequest
 {
+    const GRANT_TYPE = 'client_credentials';
+
     /**
-     * @Assert\NotBlank()
-     * @Assert\Regex(pattern="/^(client_credentials)$/")
+     * @Assert\EqualTo(self::GRANT_TYPE)
      */
     public string $grantType;
     public string $scope = Scope::INFO;

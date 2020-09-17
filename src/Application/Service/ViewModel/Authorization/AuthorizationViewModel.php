@@ -47,7 +47,7 @@ final class AuthorizationViewModel
         /** @var UserInterface $user */
         $user = $token->getUser();
 
-        switch ($request) {
+        switch ($request->responseType) {
             case AuthorizationRequest::RESPONSE_TYPE_CODE:
                 $token = $this->authTokenService
                     ->createToken($user, $request->client, $request->redirectUri);
