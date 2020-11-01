@@ -13,7 +13,7 @@ use LSBProject\RequestBundle\Request\AbstractRequest;
 use Psr\Container\ContainerInterface;
 
 /**
- * @RequestStorage({"body"})
+ * @RequestStorage({RequestStorage::BODY})
  */
 class RefreshTokenRequest extends AbstractRequest
 {

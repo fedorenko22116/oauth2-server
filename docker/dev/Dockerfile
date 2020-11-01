@@ -17,5 +17,4 @@ RUN echo "memory_limit=-1" >> /usr/local/etc/php/php.ini && \
     echo "xdebug.remote_autostart = 1" >> ${XDEBUG_PATH} && \
     echo "xdebug.remote_connect_back = 0" >> ${XDEBUG_PATH} && \
     echo "xdebug.profiler_enable = 0" >> ${XDEBUG_PATH} && \
-    echo "xdebug.remote_log = \"/tmp/xdebug.log\"" >> ${XDEBUG_PATH} && \
     echo "xdebug.remote_host = ${XDEBUG_HOST}" >> ${XDEBUG_PATH}

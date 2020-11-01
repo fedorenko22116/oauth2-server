@@ -8,9 +8,12 @@ App\Application\Entity\User:
         refreshTokens:
             targetEntity: App\Domain\RefreshToken\Entity\RefreshToken
             mappedBy: user
+            orphanRemoval: true
         authTokens:
             targetEntity: App\Domain\AuthToken\Entity\AuthToken
             mappedBy: user
+            orphanRemoval: true
         clients:
             targetEntity: App\Domain\Client\Entity\Client
             mappedBy: user
+            orphanRemoval: true

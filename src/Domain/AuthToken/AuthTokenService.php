@@ -8,7 +8,7 @@ use App\Domain\AuthToken\Contract\AuthTokenRepositoryInterface;
 use App\Domain\AuthToken\Entity\AuthToken;
 use App\Domain\Client\Entity\Client;
 use App\Domain\Shared\Contract\HashGeneratorInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Domain\User\Entity\User;
 
 class AuthTokenService
 {
@@ -23,7 +23,7 @@ class AuthTokenService
         $this->authTokenRepository = $authTokenRepository;
     }
 
-    public function createToken(UserInterface $user, Client $client, string $redirectUri): AuthToken
+    public function createToken(User $user, Client $client, string $redirectUri): AuthToken
     {
         $token = new AuthToken($this->hashGenerator->generate(), $client, $user, $redirectUri);
 

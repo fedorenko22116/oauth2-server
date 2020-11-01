@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\Collection;
 
 class RefreshToken
 {
-    protected int $id;
+    protected ?int $id;
     protected string $token;
     protected DateTime $expires;
     protected User $user;

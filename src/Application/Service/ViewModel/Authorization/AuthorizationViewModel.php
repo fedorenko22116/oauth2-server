@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Authorization;
 
+use App\Application\Entity\User;
 use App\Application\Http\Request\DTO\AuthorizationRequest;
 use App\Application\Service\ViewModel\Authorization\View\CodeView;
 use App\Application\Service\ViewModel\Authorization\View\TokenView;
@@ -15,7 +16,6 @@ use App\Domain\Scope\Entity\Scope;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Webmozart\Assert\Assert;
 
 final class AuthorizationViewModel
@@ -44,7 +44,7 @@ final class AuthorizationViewModel
 
         Assert::notNull($token);
 
-        /** @var UserInterface $user */
+        /** @var User $user */
         $user = $token->getUser();
 
         switch ($request->responseType) {

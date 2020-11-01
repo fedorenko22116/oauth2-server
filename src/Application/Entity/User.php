@@ -14,4 +14,11 @@ class User extends BaseUser implements UserInterface, EquatableInterface
     {
         return $user->getUsername() === $this->getUsername();
     }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 }

@@ -15,7 +15,6 @@ use App\Domain\Client\Entity\Client;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Webmozart\Assert\Assert;
 
 /**
  * @Rest\Route("/token")
@@ -25,7 +24,7 @@ class TokenController extends AbstractFOSRestController
     /**
      * @Rest\Post(
      *     name="token_authorization_code",
-     *     condition="context.getParameter('grant_type') == AuthorizationCodeRequest::GRANT_TYPE"
+     *     condition="context.getParameter('grant_type') == 'authorization_code'"
      * )
      */
     public function tokenAuthorizationCode(
@@ -43,29 +42,21 @@ class TokenController extends AbstractFOSRestController
     /**
      * @Rest\Post(
      *     name="token_client_credentials",
-     *     condition="context.getParameter('grant_type') == ClientCredentialsRequest::GRANT_TYPE"
+     *     condition="context.getParameter('grant_type') == 'client_credentials'"
      * )
      */
     public function tokenClientCredentials(
         ClientCredentialsRequest $request,
-        ClientCredentialsViewModel $viewModel,
-        Client $client
+        ClientCredentialsViewModel $viewModel
     ): JsonResponse {
-        Assert::object($client);
-
         return new JsonResponse($viewModel->createView($request), 201);
     }
 
     /**
-     * @Rest\Post(
-     *     name="token_password",
-     *     condition="context.getParameter('grant_type') == PasswordRequest::GRANT_TYPE"
-     * )
+     * @Rest\Post(name="token_password", condition="context.getParameter('grant_type') == 'password'")
      */
-    public function tokenPassword(PasswordRequest $request, PasswordViewModel $viewModel, Client $client): JsonResponse
+    public function tokenPassword(PasswordRequest $request, PasswordViewModel $viewModel): JsonResponse
     {
-        Assert::object($client);
-
         return new JsonResponse($viewModel->createView($request), 201);
     }
 }

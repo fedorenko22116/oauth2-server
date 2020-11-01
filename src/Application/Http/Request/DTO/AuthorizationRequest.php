@@ -14,7 +14,7 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @RequestStorage({"query"})
+ * @RequestStorage({RequestStorage::QUERY})
  */
 class AuthorizationRequest extends AbstractRequest
 {
@@ -27,11 +27,13 @@ class AuthorizationRequest extends AbstractRequest
 
     /**
      * @Assert\NotBlank()
-     * @Assert\Choice(self::RESPONSE_TYPES)
+     * @Assert\Choice(AuthorizationRequest::RESPONSE_TYPES)
      */
     public string $responseType;
 
     /**
+     * @Assert\NotBlank()
+     *
      * @Entity(options={"id": "client_id"})
      */
     public Client $client;

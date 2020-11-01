@@ -88,7 +88,10 @@ final class CreateUserCommand extends Command
 
         /** @var string $rolesString */
         $rolesString = $input->getArgument(self::ARG_EMAIL);
-        $roles = explode(',', $rolesString) ?: [];
+
+        /** @var string[]|false $roles */
+        $roles = explode(',', $rolesString);
+        $roles = $roles ?: [];
 
         $registrationData = new RegistrationData();
         $registrationData->username = $username;

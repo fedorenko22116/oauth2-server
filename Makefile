@@ -1,9 +1,9 @@
-.PHONY: up down stop rm build build-dev build-all ssh setup
+.PHONY: up down stop rm build ssh setup pull
 
-PROJECT_NAME=oauth2-server
-COMPOSE_FILE=.docker/dev/docker-compose.yml
+PROJECT_NAME?=oauth2-server
+COMPOSE_FILE?=docker/dev/docker-compose.yml
 
-setup: rm build-all
+setup: rm pull build
 
 up:
 	docker-compose -p ${PROJECT_NAME} -f ${COMPOSE_FILE} up -d
@@ -17,13 +17,11 @@ stop:
 rm: stop
 	docker-compose -p ${PROJECT_NAME} -f ${COMPOSE_FILE} rm -f
 
+pull: rm
+	docker-compose -p ${PROJECT_NAME} -f ${COMPOSE_FILE} pull
+
 build:
-	docker build . --tag oauth2-server:latest --file .docker/prod/Dockerfile
-
-build-dev:
-	docker build . --tag oauth2-server-dev:latest --file .docker/dev/Dockerfile
-
-build-all: build build-dev
+	docker build . --tag 22116/oauth2-server:latest --file docker/prod/Dockerfile
 
 ssh:
 	docker-compose -p ${PROJECT_NAME} -f ${COMPOSE_FILE} exec app sh

@@ -8,8 +8,9 @@
         "ext-json": "*",
         "ext-openssl": "*",
         "adhocore/jwt": "^1.0",
+        "easycorp/easyadmin-bundle": "^3.1",
         "friendsofsymfony/rest-bundle": "^3.0",
-        "lsbproject/request-bundle": "^2.0",
+        "lsbproject/request-bundle": "^5.0",
         "nelmio/cors-bundle": "^2.0",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/console": "5.0.*",
@@ -27,7 +28,7 @@
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
-        "lsbproject/php-clean-code-rules": "^1.0",
+        "lsbproject/php-clean-code-rules": "^1.1",
         "phpstan/phpstan-doctrine": "^0.12.17",
         "phpstan/phpstan-phpunit": "^0.12.11",
         "phpstan/phpstan-symfony": "^0.12.6",

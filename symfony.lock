@@ -2,6 +2,9 @@
     "adhocore/jwt": {
         "version": "1.0.1"
     },
+    "dealerdirect/phpcodesniffer-composer-installer": {
+        "version": "v0.7.0"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -80,6 +83,15 @@
     },
     "doctrine/sql-formatter": {
         "version": "1.1.0"
+    },
+    "easycorp/easyadmin-bundle": {
+        "version": "3.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "b131e6cbfe1b898a508987851963fff485986285"
+        }
     },
     "escapestudios/symfony2-coding-standard": {
         "version": "3.11.0"
@@ -195,6 +207,9 @@
             "ref": "0dc9cceda799fd3a08b96987e176a261028a3709"
         }
     },
+    "symfony/asset": {
+        "version": "v5.0.11"
+    },
     "symfony/cache": {
         "version": "v4.4.4"
     },
@@ -309,11 +324,17 @@
     "symfony/orm-pack": {
         "version": "v1.0.8"
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.19.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.14.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.13.1"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.19.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.13.1"
@@ -326,6 +347,9 @@
     },
     "symfony/polyfill-php80": {
         "version": "v1.17.0"
+    },
+    "symfony/polyfill-uuid": {
+        "version": "v1.19.0"
     },
     "symfony/profiler-pack": {
         "version": "v1.0.4"
@@ -386,6 +410,22 @@
     "symfony/stopwatch": {
         "version": "v4.4.4"
     },
+    "symfony/string": {
+        "version": "v5.0.11"
+    },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
+        },
+        "files": [
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
+        ]
+    },
     "symfony/translation-contracts": {
         "version": "v2.0.1"
     },
@@ -408,6 +448,9 @@
     },
     "symfony/twig-pack": {
         "version": "v1.0.0"
+    },
+    "symfony/uid": {
+        "version": "v5.1.7"
     },
     "symfony/validator": {
         "version": "4.3",

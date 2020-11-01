@@ -19,7 +19,7 @@ COPY . /var/www/root
 
 RUN composer install
 
-COPY .docker/prod/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+COPY docker/prod/docker-entrypoint.sh /usr/local/bin/docker-entrypoint
 
 RUN chmod +x /usr/local/bin/docker-entrypoint
 

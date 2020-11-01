@@ -8,7 +8,7 @@ class Scope
 {
     public const INFO = 'info';
 
-    protected int $id = 0;
+    protected ?int $id = 0;
     protected string $name;
     protected string $description;
     protected bool $default;

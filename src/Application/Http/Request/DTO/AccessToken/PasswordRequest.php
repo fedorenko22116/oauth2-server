@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Request\DTO\AccessToken;
 
+use App\Domain\Client\Entity\Client;
 use App\Domain\Scope\Entity\Scope;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -12,14 +13,14 @@ use LSBProject\RequestBundle\Request\AbstractRequest;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @RequestStorage({"body"})
+ * @RequestStorage({RequestStorage::BODY})
  */
 class PasswordRequest extends AbstractRequest
 {
-    const GRANT_TYPE = 'password';
+    public const GRANT_TYPE = 'password';
 
     /**
-     * @Assert\EqualTo(self::GRANT_TYPE)
+     * @Assert\EqualTo(PasswordRequest::GRANT_TYPE)
      */
     public string $grantType;
 
@@ -33,6 +34,11 @@ class PasswordRequest extends AbstractRequest
      */
     public string $password;
     public string $scope = Scope::INFO;
+
+    /**
+     * @RequestStorage({RequestStorage::HEAD})
+     */
+    public Client $client;
 
     /**
      * @return Collection<string>

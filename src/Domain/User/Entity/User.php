@@ -14,7 +14,7 @@ class User
     public const ROLE_USER = 'ROLE_USER';
     public const ROLE_ADMIN = 'ROLE_ADMIN';
 
-    protected int $id = 0;
+    protected ?int $id = 0;
     protected string $username = '';
     protected string $password = '';
     protected string $email = '';
@@ -55,7 +55,7 @@ class User
 
     public function getId(): int
     {
-        return $this->id;
+        return $this->id ?? 0;
     }
 
     /**

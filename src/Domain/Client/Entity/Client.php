@@ -12,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Client
 {
-    protected string $id;
+    protected ?string $id;
     protected string $secret;
 
     /**
@@ -38,7 +38,7 @@ class Client
 
     public function getId(): string
     {
-        return $this->id;
+        return $this->id ?? '';
     }
 
     public function setUser(User $user): self

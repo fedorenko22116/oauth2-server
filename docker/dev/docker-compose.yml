@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   app:
-    image: oauth2-server-dev:latest
+    build: .
     volumes:
       - ../..:/var/www/root
       - ~/.ssh:/.ssh

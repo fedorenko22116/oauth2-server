@@ -8,7 +8,6 @@ use App\Application\Entity\User as AppUser;
 use App\Domain\User\Contract\PasswordUpdaterInterface;
 use App\Domain\User\Entity\User;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use Symfony\Component\Security\Core\Encoder\NativePasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\SelfSaltingEncoderInterface;
 
 final class PasswordUpdater implements PasswordUpdaterInterface
@@ -24,17 +23,19 @@ final class PasswordUpdater implements PasswordUpdaterInterface
     {
         $plainPassword = $user->getPlainPassword();
 
-        if (0 === strlen($plainPassword)) {
+        if ('' === $plainPassword) {
             return;
         }
 
         $encoder = $this->encoderFactory->getEncoder(AppUser::class);
+        $strong = true;
+        $hash = openssl_random_pseudo_bytes(32, $strong);
 
-        if ($encoder instanceof NativePasswordEncoder || $encoder instanceof SelfSaltingEncoderInterface) {
+        if ($encoder instanceof SelfSaltingEncoderInterface) {
             $user->setSalt(null);
         } else {
             $salt = rtrim(
-                str_replace('+', '.', base64_encode(openssl_random_pseudo_bytes(32) ?: '')),
+                str_replace('+', '.', base64_encode($hash ?: '')),
                 '=',
             );
             $user->setSalt($salt);

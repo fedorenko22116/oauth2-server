@@ -13,14 +13,14 @@ use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @RequestStorage({"body"})
+ * @RequestStorage({RequestStorage::BODY})
  */
 class AuthorizationCodeRequest extends AbstractRequest
 {
-    const GRANT_TYPE = 'authorization_code';
+    public const GRANT_TYPE = 'authorization_code';
 
     /**
-     * @Assert\EqualTo(self::GRANT_TYPE)
+     * @Assert\EqualTo(AuthorizationCodeRequest::GRANT_TYPE)
      */
     public string $grantType;
 

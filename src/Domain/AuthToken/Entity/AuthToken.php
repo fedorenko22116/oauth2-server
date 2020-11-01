@@ -5,17 +5,17 @@ declare(strict_types=1);
 namespace App\Domain\AuthToken\Entity;
 
 use App\Domain\Client\Entity\Client;
-use Symfony\Component\Security\Core\User\UserInterface;
+use App\Domain\User\Entity\User;
 
 class AuthToken
 {
-    protected UserInterface $user;
-    private int $id;
+    protected User $user;
+    private ?int $id;
     private string $token;
     private string $redirectUri;
     private Client $client;
 
-    public function __construct(string $token, Client $client, UserInterface $user, string $redirectUri)
+    public function __construct(string $token, Client $client, User $user, string $redirectUri)
     {
         $this->token = $token;
         $this->client = $client;
@@ -33,7 +33,7 @@ class AuthToken
         return $this->client;
     }
 
-    public function getUser(): UserInterface
+    public function getUser(): User
     {
         return $this->user;
     }
