@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51e61615f029e139c9aec2debc32e69e",
+    "content-hash": "fa3df385b469cda721c6f7e8daabfb58",
     "packages": [
         {
             "name": "adhocore/jwt",
@@ -7995,7 +7995,7 @@
         },
         {
             "name": "roave/security-advisories",
-            "version": "dev-latest",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
@@ -8273,7 +8273,6 @@
                 "zfcampus/zf-apigility-doctrine": ">=1,<1.0.3",
                 "zfr/zfr-oauth2-server-module": "<0.1.2"
             },
-            "default-branch": true,
             "type": "metapackage",
             "notification-url": "https://packagist.org/downloads/",
             "license": [
