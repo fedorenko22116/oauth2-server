@@ -6,5 +6,5 @@ namespace App\Domain\Shared\Contract;
 
 interface HashGeneratorInterface
 {
-    public function generate(): string;
+    public function generate(int $size = 256): string;
 }

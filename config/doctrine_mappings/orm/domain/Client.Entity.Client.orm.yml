@@ -5,7 +5,7 @@ App\Domain\Client\Entity\Client:
 
     id:
         id:
-            type: integer
+            type: string
             generator: { strategy: UUID }
 
     fields:
@@ -13,8 +13,6 @@ App\Domain\Client\Entity\Client:
             type: string
         host:
             type: string
-        grantTypes:
-            type: array
 
     oneToMany:
         authTokens:

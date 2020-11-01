@@ -12,18 +12,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Client
 {
-    protected ?string $id;
-    protected string $secret;
+    protected ?string $id = '';
+    protected string $secret = '';
 
     /**
      * @Assert\Url()
      */
     protected string $host;
-
-    /**
-     * @var string[]
-     */
-    protected array $grantTypes = [];
 
     /**
      * @var Collection<Scope>
@@ -34,7 +29,7 @@ class Client
      * @var Collection<AuthToken>
      */
     protected Collection $authTokens;
-    protected User $user;
+    protected ?User $user = null;
 
     public function getId(): string
     {
@@ -48,7 +43,7 @@ class Client
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
@@ -71,14 +66,6 @@ class Client
     }
 
     /**
-     * @return array|string[]
-     */
-    public function getGrantTypes(): array
-    {
-        return $this->grantTypes;
-    }
-
-    /**
      * @return Collection<Scope>
      */
     public function getScopes(): Collection
@@ -94,17 +81,11 @@ class Client
         return $this->authTokens;
     }
 
-    public function setHost(string $host): void
+    public function setHost(string $host): self
     {
         $this->host = $host;
-    }
 
-    /**
-     * @param string[] $grantTypes
-     */
-    public function setGrantTypes(array $grantTypes): void
-    {
-        $this->grantTypes = $grantTypes;
+        return $this;
     }
 
     /**
@@ -121,5 +102,15 @@ class Client
     public function setAuthTokens(Collection $authTokens): void
     {
         $this->authTokens = $authTokens;
+    }
+
+    public function copyFrom(Client $client): self
+    {
+        $this->id = $client->id;
+        $this->secret = $client->secret;
+        $this->host = $client->host;
+        $this->user = $client->user;
+
+        return $this;
     }
 }

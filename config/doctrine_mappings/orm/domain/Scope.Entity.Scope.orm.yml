@@ -13,5 +13,5 @@ App\Domain\Scope\Entity\Scope:
             type: string
         description:
             type: string
-        default:
+        defaults:
             type: boolean
