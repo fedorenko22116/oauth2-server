@@ -17,7 +17,7 @@ use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * @Rest\Route("/token")
+ * @Rest\Route("/api/token")
  */
 class TokenController extends AbstractFOSRestController
 {

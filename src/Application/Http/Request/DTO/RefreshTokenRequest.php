@@ -10,6 +10,7 @@ use App\Domain\Shared\Contract\DateTimeInterface;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;
+use OpenApi\Annotations\Property;
 use Psr\Container\ContainerInterface;
 
 /**
@@ -18,6 +19,7 @@ use Psr\Container\ContainerInterface;
 class RefreshTokenRequest extends AbstractRequest
 {
     /**
+     * @Property(type="string")
      * @Entity(expr="repository.findOneByToken(token)", mapping={"token": "token"})
      */
     public RefreshToken $token;

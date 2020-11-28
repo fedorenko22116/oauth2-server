@@ -1,0 +1,37 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title 'Welcome to OAuth2 dashboard' %}
+
+{% block page_content %}
+    {% block javascripts %}
+        <script src="{{ asset('bundles/nelmioapidoc/swagger-ui/swagger-ui-bundle.js') }}"></script>
+        <script src="{{ asset('bundles/nelmioapidoc/swagger-ui/swagger-ui-standalone-preset.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/custom-request-signer.js') }}"></script>
+    {% endblock javascripts %}
+
+    {% block swagger_ui %}
+        <div id="swagger-ui" class="api-platform"></div>
+    {% endblock %}
+
+    {% block swagger_initialization %}
+        <script src="{{ asset('bundles/nelmioapidoc/init-swagger-ui.js') }}"></script>
+    {% endblock swagger_initialization %}
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('bundles/nelmioapidoc/swagger-ui/swagger-ui.css') }}">
+        <style>
+            .swagger-ui .topbar {
+                background-color: #8babdb;
+            }
+            .swagger-ui .wrapper {
+                display: block;
+            }
+        </style>
+    {% endblock stylesheets %}
+
+    {% block swagger_data %}
+        {# json_encode(65) is for JSON_UNESCAPED_SLASHES|JSON_HEX_TAG to avoid JS XSS #}
+        <script id="swagger-data" type="application/json">{{ swagger_data|json_encode(65)|raw }}</script>
+    {% endblock swagger_data %}
+{% endblock %}

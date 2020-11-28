@@ -10,6 +10,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 class User extends BaseUser implements UserInterface, EquatableInterface
 {
+    public bool $equalTo = false;
+
     public function isEqualTo(UserInterface $user): bool
     {
         return $user->getUsername() === $this->getUsername();

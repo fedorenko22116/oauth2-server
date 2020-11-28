@@ -12,7 +12,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         api_public:
-            pattern: ^/api/refresh-token
+            pattern: ^/(api/refresh-token|api/doc.json)
             security: false
         api:
             pattern: ^/api
@@ -39,6 +39,7 @@ security:
     access_control:
          - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
          - { path: ^/api/refresh-token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/api/doc.json, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/api/token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/auth, roles: IS_AUTHENTICATED_ANONYMOUSLY }

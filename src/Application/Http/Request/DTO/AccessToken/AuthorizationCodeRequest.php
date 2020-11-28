@@ -9,6 +9,7 @@ use App\Domain\Client\Entity\Client;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;
+use OpenApi\Annotations\Property;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -30,11 +31,13 @@ class AuthorizationCodeRequest extends AbstractRequest
     public string $redirectUri;
 
     /**
+     * @Property(property="token", type="string")
      * @Entity(expr="repository.findOneByToken(token)", mapping={"token": "code"})
      */
     public AuthToken $token;
 
     /**
+     * @Property(property="client_id", type="string")
      * @Entity(options={"id": "client_id"})
      */
     public ?Client $client;

@@ -34,3 +34,7 @@ services:
     App\Application\Service\Request\Host\HostComparatorInterface:
         class: App\Application\Service\Request\Host\HostComparator
         public: true
+
+    App\Application\Http\Controller\Admin\DashboardController:
+        class: App\Application\Http\Controller\Admin\DashboardController
+        arguments: ['@nelmio_api_doc.generator.default']

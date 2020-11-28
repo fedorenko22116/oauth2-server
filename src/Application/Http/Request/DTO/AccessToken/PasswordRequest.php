@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;
+use OpenApi\Annotations\Property;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -33,9 +34,14 @@ class PasswordRequest extends AbstractRequest
      * @Assert\NotBlank()
      */
     public string $password;
+
+    /**
+     * @Assert\Choice({Scope::INFO})
+     */
     public string $scope = Scope::INFO;
 
     /**
+     * @Property(property="client_id", type="string")
      * @RequestStorage({RequestStorage::HEAD})
      */
     public Client $client;

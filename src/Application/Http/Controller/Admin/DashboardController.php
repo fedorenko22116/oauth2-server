@@ -11,17 +11,34 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Menu\MenuItemInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
+use Nelmio\ApiDocBundle\ApiDocGenerator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
+    private ApiDocGenerator $docGenerator;
+
+    public function __construct(ApiDocGenerator $docGenerator)
+    {
+        $this->docGenerator = $docGenerator;
+    }
+
     /**
      * @Route("/admin", name="admin")
      */
     public function index(): Response
     {
-        return parent::index();
+        return $this->render('admin/index.html.twig', [
+            'swagger_data' => [
+                'spec' => json_decode(
+                    $this->docGenerator->generate()->toJson(),
+                    true,
+                    512,
+                    JSON_THROW_ON_ERROR
+                ),
+            ],
+        ]);
     }
 
     public function configureDashboard(): Dashboard
@@ -35,9 +52,11 @@ class DashboardController extends AbstractDashboardController
      */
     public function configureMenuItems(): iterable
     {
-        yield MenuItem::linktoDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Users', 'fa fa-user', User::class);
-        yield MenuItem::linkToCrud('Client', 'fa fa-info', Client::class);
-        yield MenuItem::linkToCrud('Scope', 'fa fa-info', Scope::class);
+        return [
+            MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
+            MenuItem::linkToCrud('Users', 'fa fa-user', User::class),
+            MenuItem::linkToCrud('Client', 'fa fa-toilet', Client::class),
+            MenuItem::linkToCrud('Scope', 'fa fa-info', Scope::class),
+        ];
     }
 }
