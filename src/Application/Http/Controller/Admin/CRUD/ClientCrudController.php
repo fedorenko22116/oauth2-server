@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Controller\Admin\CRUD;
 
+use App\Application\Entity\Client;
 use App\Application\Entity\User;
 use App\Domain\Client\ClientService;
-use App\Domain\Client\Entity\Client;
 use EasyCorp\Bundle\EasyAdminBundle\Config\KeyValueStore;
 use EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
@@ -44,29 +44,11 @@ final class ClientCrudController extends AbstractCrudController
             TextField::new('secret')->hideOnForm(),
             UrlField::new('host'),
             AssociationField::new('user')
-                ->autocomplete()
-                ->setFormTypeOptions([
-                    'by_reference' => false,
-                ]),
+                ->autocomplete(),
             AssociationField::new('scopes')
                 ->autocomplete()
-                ->setFormTypeOptions([
-                    'by_reference' => false,
-                    'multiple' => true,
-                ]),
+                ->setFormTypeOptions(['multiple' => true]),
         ];
-    }
-
-    public function createEditFormBuilder(
-        EntityDto $entityDto,
-        KeyValueStore $formOptions,
-        AdminContext $context
-    ): FormBuilderInterface {
-        $formBuilder = parent::createEditFormBuilder($entityDto, $formOptions, $context);
-
-        $this->addSubmitFormEventListener($formBuilder);
-
-        return $formBuilder;
     }
 
     public function createNewFormBuilder(

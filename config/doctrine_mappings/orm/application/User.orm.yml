@@ -1,19 +1,20 @@
 App\Application\Entity\User:
     type: entity
-    table: users
     repositoryClass: App\Infrastructure\Repository\UserRepository
-
+    table: users
 
     oneToMany:
         refreshTokens:
             targetEntity: App\Domain\RefreshToken\Entity\RefreshToken
             mappedBy: user
             orphanRemoval: true
+
         authTokens:
             targetEntity: App\Domain\AuthToken\Entity\AuthToken
             mappedBy: user
             orphanRemoval: true
+
         clients:
-            targetEntity: App\Domain\Client\Entity\Client
+            targetEntity: App\Application\Entity\Client
             mappedBy: user
             orphanRemoval: true

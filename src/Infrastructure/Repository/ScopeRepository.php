@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Repository;
 
+use App\Application\Entity\Scope;
 use App\Domain\Scope\Contract\ScopeRepositoryInterface;
-use App\Domain\Scope\Entity\Scope;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Persistence\ManagerRegistry;
 

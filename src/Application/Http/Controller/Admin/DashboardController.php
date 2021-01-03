@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Controller\Admin;
 
+use App\Application\Entity\Client;
+use App\Application\Entity\Scope;
 use App\Application\Entity\User;
-use App\Domain\Client\Entity\Client;
-use App\Domain\Scope\Entity\Scope;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Menu\MenuItemInterface;
@@ -35,7 +35,7 @@ class DashboardController extends AbstractDashboardController
                     $this->docGenerator->generate()->toJson(),
                     true,
                     512,
-                    JSON_THROW_ON_ERROR
+                    JSON_THROW_ON_ERROR,
                 ),
             ],
         ]);
@@ -44,7 +44,8 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('Oauth2 Server');
+            ->setTitle('Oauth2 Server')
+            ->disableUrlSignatures();
     }
 
     /**

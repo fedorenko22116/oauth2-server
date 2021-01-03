@@ -1,0 +1,4 @@
+App\Application\Entity\Scope:
+    type: entity
+    repositoryClass: App\Infrastructure\Repository\ScopeRepository
+    table: scopes

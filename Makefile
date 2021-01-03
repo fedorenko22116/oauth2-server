@@ -5,7 +5,7 @@ COMPOSE_FILE?=docker/dev/docker-compose.yml
 
 setup: rm pull build
 
-up:
+run: build
 	docker-compose -p ${PROJECT_NAME} -f ${COMPOSE_FILE} up -d
 
 down:

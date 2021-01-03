@@ -9,16 +9,12 @@ App\Domain\AuthToken\Entity\AuthToken:
             generator: { strategy: AUTO }
 
     fields:
-        token:
-            type: string
-            unique: true
-        redirectUri:
-            type: string
-            nullable: true
+        token: { type: string, unique: true }
+        redirectUri: { type: string, unique: true }
 
     manyToOne:
         client:
-            targetEntity: App\Domain\Client\Entity\Client
+            targetEntity: App\Application\Entity\Client
             inversedBy: authTokens
         user:
             targetEntity: App\Application\Entity\User

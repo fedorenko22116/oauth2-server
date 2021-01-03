@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Request\ParamConverter;
 
+use App\Application\Entity\Client;
 use App\Application\Service\Request\Extractor\BasicRequestExtractor;
-use App\Domain\Client\Entity\Client;
 use App\Infrastructure\Repository\ClientRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterInterface;

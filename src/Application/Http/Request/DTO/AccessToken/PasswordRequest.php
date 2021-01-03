@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Request\DTO\AccessToken;
 
-use App\Domain\Client\Entity\Client;
-use App\Domain\Scope\Entity\Scope;
+use App\Application\Entity\Client;
+use App\Application\Entity\Scope;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use LSBProject\RequestBundle\Configuration\RequestStorage;

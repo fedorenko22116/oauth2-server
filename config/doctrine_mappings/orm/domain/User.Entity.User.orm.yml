@@ -8,14 +8,7 @@ App\Domain\User\Entity\User:
             generator: { strategy: AUTO }
 
     fields:
-        username:
-            type: string
-            length: 100
-            unique: true
-        email:
-            type: string
-            unique: true
-        password:
-            type: string
-        roles:
-            type: array
+        username: { type: string, unique: true, length: 100 }
+        email: { type: string, unique: true }
+        password: { type: string }
+        roles: { type: array }

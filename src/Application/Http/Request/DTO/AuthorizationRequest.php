@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Request\DTO;
 
+use App\Application\Entity\Client;
+use App\Application\Entity\Scope;
 use App\Application\Service\Request\Host\HostComparatorInterface;
-use App\Domain\Client\Entity\Client;
-use App\Domain\Scope\Entity\Scope;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;
@@ -34,6 +34,7 @@ class AuthorizationRequest extends AbstractRequest
 
     /**
      * @Assert\NotBlank()
+     *
      * @Property(type="string")
      * @Entity(options={"id": "client_id"})
      */

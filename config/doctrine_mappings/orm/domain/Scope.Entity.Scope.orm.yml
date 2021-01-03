@@ -1,7 +1,6 @@
 App\Domain\Scope\Entity\Scope:
-    type: entity
+    type: mappedSuperclass
     table: scopes
-    repositoryClass: App\Infrastructure\Repository\ScopeRepository
 
     id:
         id:
@@ -9,9 +8,6 @@ App\Domain\Scope\Entity\Scope:
             generator: { strategy: AUTO }
 
     fields:
-        name:
-            type: string
-        description:
-            type: string
-        defaults:
-            type: boolean
+        name: { type: string }
+        description: { type: string }
+        defaults: { type: boolean }

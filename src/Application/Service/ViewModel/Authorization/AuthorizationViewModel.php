@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Service\ViewModel\Authorization;
 
+use App\Application\Entity\Scope;
 use App\Application\Entity\User;
 use App\Application\Http\Request\DTO\AuthorizationRequest;
 use App\Application\Service\ViewModel\Authorization\View\CodeView;
@@ -12,7 +13,6 @@ use App\Application\Service\ViewModel\ViewInterface;
 use App\Domain\AccessToken\AccessTokenService;
 use App\Domain\AccessToken\Factory\PayloadFactoryInterface;
 use App\Domain\AuthToken\AuthTokenService;
-use App\Domain\Scope\Entity\Scope;
 use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;

@@ -1,7 +1,6 @@
 App\Domain\Client\Entity\Client:
-    type: entity
+    type: mappedSuperclass
     table: clients
-    repositoryClass: App\Infrastructure\Repository\ClientRepository
 
     id:
         id:
@@ -9,30 +8,5 @@ App\Domain\Client\Entity\Client:
             generator: { strategy: UUID }
 
     fields:
-        secret:
-            type: string
-        host:
-            type: string
-
-    oneToMany:
-        authTokens:
-            targetEntity: App\Domain\AuthToken\Entity\AuthToken
-            mappedBy: client
-            orphanRemoval: true
-
-    manyToOne:
-        user:
-            targetEntity: App\Application\Entity\User
-            inversedBy: clients
-
-    manyToMany:
-        scopes:
-            targetEntity: App\Domain\Scope\Entity\Scope
-            joinTable:
-                name: clients_scopes
-                joinColumns:
-                    client_id:
-                        referencedColumnName: id
-                inverseJoinColumns:
-                    scope_id:
-                        referencedColumnName: id
+        secret: { type: string }
+        host: { type: string }

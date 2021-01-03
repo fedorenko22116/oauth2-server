@@ -9,11 +9,8 @@ App\Domain\RefreshToken\Entity\RefreshToken:
             generator: { strategy: AUTO }
 
     fields:
-        token:
-            type: string
-            unique: true
-        expires:
-            type: datetime
+        token: { type: string, unique: true }
+        expires: { type: datetime }
 
     manyToOne:
         user:
@@ -22,7 +19,7 @@ App\Domain\RefreshToken\Entity\RefreshToken:
 
     manyToMany:
         scopes:
-            targetEntity: App\Domain\Scope\Entity\Scope
+            targetEntity: App\Application\Entity\Scope
             joinTable:
                 name: refresh_tokens_scopes
                 joinColumns:

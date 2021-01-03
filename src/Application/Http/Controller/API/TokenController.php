@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Controller\API;
 
+use App\Application\Entity\Client;
 use App\Application\Http\Request\DTO\AccessToken\AuthorizationCodeRequest;
 use App\Application\Http\Request\DTO\AccessToken\ClientCredentialsRequest;
 use App\Application\Http\Request\DTO\AccessToken\PasswordRequest;
@@ -11,7 +12,6 @@ use App\Application\Http\Response\ErrorResponse;
 use App\Application\Service\ViewModel\Token\AuthorizationCodeViewModel;
 use App\Application\Service\ViewModel\Token\ClientCredentialsViewModel;
 use App\Application\Service\ViewModel\Token\PasswordViewModel;
-use App\Domain\Client\Entity\Client;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
 use Symfony\Component\HttpFoundation\JsonResponse;

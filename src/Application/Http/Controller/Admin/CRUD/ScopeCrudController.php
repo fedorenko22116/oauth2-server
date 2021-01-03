@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Controller\Admin\CRUD;
 
-use App\Domain\Scope\Entity\Scope;
+use App\Application\Entity\Scope;
 use EasyCorp\Bundle\EasyAdminBundle\Contracts\Field\FieldInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;

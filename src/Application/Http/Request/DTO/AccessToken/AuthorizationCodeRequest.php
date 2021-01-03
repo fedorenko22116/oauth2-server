@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Application\Http\Request\DTO\AccessToken;
 
+use App\Application\Entity\Client;
 use App\Domain\AuthToken\Entity\AuthToken;
-use App\Domain\Client\Entity\Client;
 use LSBProject\RequestBundle\Configuration\Entity;
 use LSBProject\RequestBundle\Configuration\RequestStorage;
 use LSBProject\RequestBundle\Request\AbstractRequest;

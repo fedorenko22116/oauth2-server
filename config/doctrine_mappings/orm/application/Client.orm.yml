@@ -1,0 +1,27 @@
+App\Application\Entity\Client:
+    type: entity
+    table: clients
+    repositoryClass: App\Infrastructure\Repository\ClientRepository
+
+    oneToMany:
+        authTokens:
+            targetEntity: App\Domain\AuthToken\Entity\AuthToken
+            mappedBy: client
+            orphanRemoval: true
+
+    manyToOne:
+        user:
+            targetEntity: App\Application\Entity\User
+            inversedBy: clients
+
+    manyToMany:
+        scopes:
+            targetEntity: App\Application\Entity\Scope
+            joinTable:
+                name: clients_scopes
+                joinColumns:
+                    client_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    scope_id:
+                        referencedColumnName: id
